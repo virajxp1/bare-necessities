@@ -1,6 +1,6 @@
 # Color Palette
 
-This document defines the core color system for the site. It is based on the approved palette reference in `.context/attachments/image-v5.png`.
+This document defines the core color system for the site. The approved reference palette is documented directly below as named tokens; the original moodboard image is not committed to the repo.
 
 ## Intent
 
@@ -95,7 +95,7 @@ The palette should be applied with restraint:
 ## Accessibility Notes
 
 - Default text should remain `Midnight Violet` on `Papaya Whip`.
-- Do not place white text on `Cinnabar` or `Raspberry Red` without verifying contrast.
+- When placing `Papaya Whip` text on `Cinnabar` or `Raspberry Red`, verify contrast at the final type size; prefer `Midnight Violet` text for small type.
 - Focus rings should use `Raspberry Red` only if they remain clearly visible against both light and tinted surfaces.
 - Color should not be the only indicator of state; pair it with labels, icons, or text treatment.
 

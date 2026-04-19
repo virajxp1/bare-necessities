@@ -116,7 +116,7 @@ Used for major homepage and index sections.
 
 - optional eyebrow label
 - main heading
-- optional trailing action such as `View all`
+- optional trailing action such as `View work` or `All posts`
 
 ### Rules
 

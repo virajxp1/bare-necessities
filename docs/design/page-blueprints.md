@@ -40,7 +40,7 @@ Content:
 
 - section label and heading
 - 3 featured projects in stacked row format
-- `View all` action linking to `/work`
+- `View work` action linking to `/work`
 
 ### Latest Writing
 
