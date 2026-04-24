@@ -1,41 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects } from "@/content/projects";
+import { getAllProjects, getProject } from "@/content/lib";
 
 type WorkProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-function getProjectBySlug(slug: string) {
-  return projects.find((project) => project.slug === slug);
-}
-
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return getAllProjects().map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: WorkProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProject(slug);
 
   if (!project) {
-    return {
-      title: "Project not found — Oslo",
-    };
+    return { title: "Project not found — bare-necessities.studio" };
   }
 
   return {
-    title: `${project.title} — Work — Oslo`,
+    title: `${project.title} — bare-necessities.studio`,
     description: project.summary,
   };
 }
 
-export default async function WorkProjectPage({ params }: WorkProjectPageProps) {
+export default async function WorkProjectPage({
+  params,
+}: WorkProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProject(slug);
 
   if (!project) {
     notFound();
@@ -43,61 +39,78 @@ export default async function WorkProjectPage({ params }: WorkProjectPageProps) 
 
   return (
     <article className="mx-auto w-full max-w-[var(--container-content)] px-6 py-[var(--space-2xl)] md:px-10">
-      <Link
-        href="/work"
-        className="inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-strong)]"
-      >
-        <span aria-hidden>←</span>
-        Back to work
-      </Link>
+      <div className="masthead-meta flex items-center justify-between gap-4 pb-[var(--space-md)] text-[var(--color-ink)]">
+        <Link
+          href="/work"
+          className="group inline-flex items-center gap-2 text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)]"
+        >
+          <span
+            aria-hidden
+            className="inline-block transition-transform group-hover:-translate-x-0.5"
+          >
+            ←
+          </span>
+          Back to archive
+        </Link>
+        <span className="tabular text-[var(--color-ink)]/70">
+          {project.year}
+        </span>
+      </div>
+      <hr className="rule-double" />
 
-      <header className="mt-[var(--space-lg)] space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
-          Project
-        </p>
+      <header className="mt-[var(--space-xl)]">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="chip">Project</span>
+          <span className="masthead-meta tabular text-[var(--color-ink)]/60">
+            {project.year}
+          </span>
+        </div>
         <h1
-          className="font-[family-name:var(--font-display)] font-extrabold tracking-tight"
+          className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight"
           style={{ fontSize: "var(--text-h1)" }}
         >
           {project.title}
         </h1>
-        <p className="text-lg text-[var(--color-muted-text)]">{project.summary}</p>
+        <p
+          className="mt-[var(--space-md)] max-w-[48ch] font-[family-name:var(--font-display)] font-medium tracking-tight text-[var(--color-ink)]/85"
+          style={{ fontSize: "var(--text-lead)", lineHeight: 1.22 }}
+        >
+          {project.summary}
+        </p>
+        <dl className="masthead-meta mt-[var(--space-lg)] grid gap-x-6 gap-y-2 text-[var(--color-ink)]/60 sm:grid-cols-[auto_1fr]">
+          <dt style={{ color: "var(--color-blue)" }}>Shipped</dt>
+          <dd className="tabular">{project.year}</dd>
+          <dt style={{ color: "var(--color-blue)" }}>Stack</dt>
+          <dd>{project.tags.join(" · ")}</dd>
+        </dl>
       </header>
 
-      <dl className="mt-[var(--space-xl)] grid gap-6 border-y border-[var(--color-border)] py-6 md:grid-cols-2">
-        <div>
-          <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted-text)]">
-            Year
-          </dt>
-          <dd className="mt-2 text-[var(--color-ink)]">{project.year}</dd>
-        </div>
-        <div>
-          <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted-text)]">
-            Stack
-          </dt>
-          <dd className="mt-2 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-[var(--color-soft-fill)] px-2.5 py-0.5 text-xs text-[var(--color-muted-text)]"
-              >
-                {tag}
-              </span>
-            ))}
-          </dd>
-        </div>
-      </dl>
+      <hr className="rule-accent mt-[var(--space-lg)]" />
 
-      <section className="mt-[var(--space-xl)] space-y-5 text-[var(--color-muted-text)]">
-        <p>
-          This project page is part of the static portfolio archive and is
-          generated from local content data.
+      <div
+        className="prose-content prose-lead mt-[var(--space-lg)] space-y-5 text-[var(--color-ink)]"
+        dangerouslySetInnerHTML={{ __html: project.html }}
+      />
+
+      <footer className="mt-[var(--space-2xl)] flex items-center gap-4 border-t border-[var(--color-ink)]/15 pt-[var(--space-md)]">
+        <span
+          aria-hidden
+          className="font-[family-name:var(--font-display)] text-2xl"
+          style={{ color: "var(--color-accent)" }}
+        >
+          ¶
+        </span>
+        <p className="masthead-meta text-[var(--color-ink)]/55">
+          End of entry
         </p>
-        <p>
-          The card links on the home and work index now resolve to dedicated
-          routes instead of falling through to a 404.
-        </p>
-      </section>
+        <span aria-hidden className="h-px flex-1 bg-[var(--color-ink)]/15" />
+        <Link
+          href="/work"
+          className="masthead-meta text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)]"
+        >
+          More from the archive →
+        </Link>
+      </footer>
     </article>
   );
 }

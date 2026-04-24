@@ -11,9 +11,9 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Oslo — Portfolio and writing",
+  title: "bare-necessities.studio — Viraj Parikh",
   description:
-    "Software, stripped to what matters. Portfolio and writing on building useful systems with a bias toward clarity, speed, and restraint.",
+    "Backend engineer in Austin. Notes on simplicity, small teams, and systems that age well.",
 };
 
 export default function RootLayout({
