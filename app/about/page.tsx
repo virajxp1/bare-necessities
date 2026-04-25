@@ -1,128 +1,132 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Timeline } from "@/components/timeline";
+import { getTimeline } from "@/content/lib";
 
 export const metadata: Metadata = {
-  title: "About — Oslo",
-  description:
-    "Who I am, how I work, and the kinds of problems I care about.",
+  title: "About — bare-necessities.studio",
+  description: "A short bio and a timeline of chapters so far.",
 };
 
-const principles = [
-  {
-    heading: "Simplicity is a competitive advantage.",
-    body: "Most teams compound complexity faster than capability. I spend a lot of time resisting that drift — in code, in product, in meetings.",
-  },
-  {
-    heading: "Useful beats impressive.",
-    body: "I'd rather ship something quietly excellent than pitch something that sounds remarkable and doesn't survive contact with users.",
-  },
-  {
-    heading: "Judgment matters as much as implementation.",
-    body: "Process is a reasonable default for teams that lack shared judgment. It's an expensive substitute once you have one.",
-  },
-  {
-    heading: "Writing is part of the work.",
-    body: "If the thinking isn't clear on paper, it usually isn't clear in the code either.",
-  },
-];
-
-const focus = [
-  "Small, opinionated product tools",
-  "Developer-facing infrastructure",
-  "Editorial and content-heavy software",
-  "Internal tools that quietly reduce team load",
-];
-
 export default function AboutPage() {
+  const chapters = getTimeline();
+
   return (
-    <div className="mx-auto w-full max-w-[var(--container-content)] px-6 py-[var(--space-2xl)] md:px-10">
-      <header className="flex flex-col gap-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
-          About
-        </p>
-        <h1
-          className="font-[family-name:var(--font-display)] font-extrabold tracking-tight"
-          style={{ fontSize: "var(--text-h1)" }}
-        >
-          Specific, credible, and edited.
-        </h1>
-      </header>
+    <div>
+      <section className="mx-auto w-full max-w-[var(--container-default)] px-6 pb-[var(--space-2xl)] pt-[var(--space-xl)] md:px-10 md:pt-[var(--space-2xl)]">
+        <div className="masthead-meta flex items-center justify-between gap-4 pb-[var(--space-md)] text-[var(--color-ink)]">
+          <span className="flex items-center gap-3">
+            <span style={{ color: "var(--color-blue)" }}>N° 03</span>
+            <span aria-hidden className="h-px w-10 bg-[var(--color-ink)]/60" />
+            <span>About</span>
+          </span>
+          <span className="hidden text-[var(--color-ink)]/70 md:inline">
+            Austin · Texas
+          </span>
+        </div>
+        <hr className="rule-double" />
 
-      <section className="mt-[var(--space-xl)] space-y-5 text-lg text-[var(--color-ink)]">
-        <p>
-          I&rsquo;m a product engineer working at the overlap of design, tooling,
-          and infrastructure. I like problems that reward restraint — the ones
-          where the right answer is usually less, not more.
-        </p>
-        <p>
-          I&rsquo;ve spent the last decade building tools for small teams and
-          the occasional larger one. Most of my work is in TypeScript, Go, and
-          Rust, with a growing interest in local-first architectures.
-        </p>
-      </section>
-
-      <section className="mt-[var(--space-2xl)]">
-        <h2 className="font-[family-name:var(--font-display)] text-[var(--text-h2)] font-bold tracking-tight">
-          How I work
-        </h2>
-        <dl className="mt-[var(--space-lg)] space-y-8">
-          {principles.map((principle) => (
-            <div
-              key={principle.heading}
-              className="border-l-2 border-[var(--color-accent)] pl-5"
-            >
-              <dt className="font-[family-name:var(--font-display)] text-xl font-semibold">
-                {principle.heading}
-              </dt>
-              <dd className="mt-2 text-[var(--color-muted-text)]">
-                {principle.body}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className="mt-[var(--space-2xl)]">
-        <h2 className="font-[family-name:var(--font-display)] text-[var(--text-h2)] font-bold tracking-tight">
-          Areas of focus
-        </h2>
-        <ul className="mt-[var(--space-lg)] space-y-2 text-[var(--color-ink)]">
-          {focus.map((item) => (
-            <li key={item} className="flex gap-3">
-              <span aria-hidden className="text-[var(--color-accent)]">
-                ·
+        <header className="mt-[var(--space-xl)]">
+          <h1
+            className="font-[family-name:var(--font-display)] font-extrabold tracking-tight"
+            style={{ fontSize: "var(--text-h1)" }}
+          >
+            Hi, I&rsquo;m{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-[var(--color-accent)]">
+                Viraj.
               </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+              <span
+                aria-hidden
+                className="absolute inset-x-0 bottom-[0.1em] -z-0 h-[0.22em] bg-[var(--color-accent-strong)]/25"
+              />
+            </span>
+          </h1>
+        </header>
+
+        <hr className="rule-accent mt-[var(--space-lg)]" />
+
+        <section className="mt-[var(--space-xl)] grid gap-[var(--space-lg)] md:grid-cols-12">
+          <div className="md:col-span-8 space-y-[var(--space-md)]">
+            <p className="max-w-[60ch] text-lg text-[var(--color-ink)]">
+              <span
+                className="float-left mr-3 font-[family-name:var(--font-display)] font-extrabold leading-[0.85]"
+                style={{
+                  color: "var(--color-accent-strong)",
+                  fontSize: "clamp(3.5rem, 6vw, 5rem)",
+                  paddingTop: "0.1em",
+                }}
+              >
+                W
+              </span>
+              hen I&rsquo;m not at a keyboard, I&rsquo;m chasing beaches
+              and mountains, hunting for fresh snow, or finding a coffee
+              shop I&rsquo;ll definitely become a regular at.
+            </p>
+
+            <p className="max-w-[60ch] text-[var(--color-ink)]/90">
+              Family dinners, long drives with no real plan, dance and
+              music that remind me where I come from. The people around
+              the thing usually matter more than the thing itself.
+            </p>
+          </div>
+
+          <aside className="md:col-span-4 md:pt-2">
+            <p className="masthead-meta" style={{ color: "var(--color-blue)" }}>
+              Find me on
+            </p>
+            <ul className="mt-[var(--space-sm)] flex flex-wrap gap-2">
+              <li>
+                <a
+                  href="https://github.com/virajxp1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip chip-blue transition-opacity hover:opacity-90"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/vhparikh/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip transition-opacity hover:opacity-90"
+                  style={{ background: "var(--color-blue-deep)" }}
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </section>
       </section>
 
-      <section className="mt-[var(--space-2xl)]">
-        <h2 className="font-[family-name:var(--font-display)] text-[var(--text-h2)] font-bold tracking-tight">
-          Contact
-        </h2>
-        <p className="mt-[var(--space-md)] text-[var(--color-muted-text)]">
-          The best way to reach me is email. Short messages welcome.
-        </p>
-        <ul className="mt-[var(--space-md)] space-y-1 text-[var(--color-ink)]">
-          <li>
-            <a
-              href="mailto:hello@example.com"
-              className="underline underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
-            >
-              hello@example.com
-            </a>
-          </li>
-          <li>
-            <Link
-              href="/work"
-              className="underline underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
-            >
-              See current work
-            </Link>
-          </li>
-        </ul>
+      <section className="bg-[var(--color-ink)] text-[var(--color-bg)]">
+        <div className="mx-auto w-full max-w-[var(--container-default)] px-6 py-[var(--space-2xl)] md:px-10">
+          <div className="flex items-end justify-between gap-6 pb-[var(--space-sm)]">
+            <div className="flex items-end gap-4">
+              <span
+                className="section-mark tabular"
+                style={{ color: "var(--color-accent)" }}
+              >
+                N° 04
+              </span>
+              <h2
+                className="font-[family-name:var(--font-display)] font-bold tracking-tight"
+                style={{ fontSize: "var(--text-h2)" }}
+              >
+                Where I&rsquo;ve been, where I am.
+              </h2>
+            </div>
+          </div>
+          <hr
+            className="rule-accent"
+            style={{ background: "var(--color-accent)" }}
+          />
+          <div className="mt-[var(--space-xl)]">
+            <Timeline chapters={chapters} inverted />
+          </div>
+        </div>
       </section>
     </div>
   );
