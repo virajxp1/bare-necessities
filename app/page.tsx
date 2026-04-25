@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { ProjectRow } from "@/components/project-row";
+import { YearText } from "@/components/year-text";
 import { getAllPosts, getAllProjects } from "@/content/lib";
 
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 3);
   const recentPosts = getAllPosts().slice(0, 3);
   const [leadPost, ...sidePosts] = recentPosts;
-  const currentYear = new Date().getFullYear();
+  const buildYear = new Date().getFullYear();
 
   return (
     <div>
@@ -15,7 +16,9 @@ export default function Home() {
           <span className="flex items-center gap-3">
             <span style={{ color: "var(--color-blue)" }}>Vol. I</span>
             <span aria-hidden className="h-px w-10 bg-[var(--color-ink)]/60" />
-            <span>Issue {currentYear}</span>
+            <span>
+              Issue <YearText fallbackYear={buildYear} />
+            </span>
           </span>
           <span className="hidden text-[var(--color-ink)]/70 md:inline">
             Austin · Texas

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { YearText } from "@/components/year-text";
 
 const currentYear = new Date().getFullYear();
 
@@ -77,9 +78,9 @@ export function SiteFooter() {
             <span
               style={{ color: "var(--color-blue-soft)" }}
             >
-              MMXXVI
+              <YearText fallbackYear={currentYear} format="roman" />
             </span>{" "}
-            · © {currentYear} · bare-necessities.studio · Austin, TX
+            · © <YearText fallbackYear={currentYear} /> · bare-necessities.studio · Austin, TX
           </p>
           <p className="italic">
             Set in Cabinet Grotesk &amp; Instrument Sans. Typeset by hand.

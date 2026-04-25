@@ -2,11 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import sanitizeHtml from "sanitize-html";
 
 const contentDir = path.join(process.cwd(), "content");
 const postsDir = path.join(contentDir, "posts");
 const projectsDir = path.join(contentDir, "projects");
 const timelineDir = path.join(contentDir, "timeline");
+const slugPattern = /^[a-z0-9-]+$/;
 
 export type PostMeta = {
   slug: string;
@@ -56,6 +58,31 @@ function readMarkdownDir(dir: string) {
     });
 }
 
+function resolveMarkdownFile(dir: string, slug: string): string | null {
+  if (!slugPattern.test(slug)) return null;
+  const filePath = path.resolve(dir, `${slug}.md`);
+  const relativePath = path.relative(dir, filePath);
+
+  if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
+    return null;
+  }
+
+  return filePath;
+}
+
+function parseMarkdownSafe(content: string): string {
+  const html = marked.parse(content, { async: false }) as string;
+  return sanitizeHtml(html, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      a: ["href", "name", "target", "rel"],
+      img: ["src", "alt", "title", "width", "height", "loading", "decoding"],
+    },
+    allowedSchemes: ["http", "https", "mailto", "tel"],
+  });
+}
+
 export function getAllPosts(): PostMeta[] {
   return readMarkdownDir(postsDir)
     .map(({ slug, data }) => ({ slug, ...(data as Omit<PostMeta, "slug">) }))
@@ -63,11 +90,12 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPost(slug: string): Post | null {
-  const file = path.join(postsDir, `${slug}.md`);
+  const file = resolveMarkdownFile(postsDir, slug);
+  if (!file) return null;
   if (!fs.existsSync(file)) return null;
   const raw = fs.readFileSync(file, "utf8");
   const parsed = matter(raw);
-  const html = marked.parse(parsed.content, { async: false }) as string;
+  const html = parseMarkdownSafe(parsed.content);
   return {
     slug,
     ...(parsed.data as Omit<PostMeta, "slug">),
@@ -85,11 +113,12 @@ export function getAllProjects(): ProjectMeta[] {
 }
 
 export function getProject(slug: string): Project | null {
-  const file = path.join(projectsDir, `${slug}.md`);
+  const file = resolveMarkdownFile(projectsDir, slug);
+  if (!file) return null;
   if (!fs.existsSync(file)) return null;
   const raw = fs.readFileSync(file, "utf8");
   const parsed = matter(raw);
-  const html = marked.parse(parsed.content, { async: false }) as string;
+  const html = parseMarkdownSafe(parsed.content);
   return {
     slug,
     ...(parsed.data as Omit<ProjectMeta, "slug">),
@@ -102,7 +131,7 @@ export function getTimeline(): TimelineChapter[] {
     .map(({ slug, data, content }) => ({
       slug,
       ...(data as Omit<TimelineChapter, "slug" | "html">),
-      html: marked.parse(content, { async: false }) as string,
+      html: parseMarkdownSafe(content),
     }))
     .sort((a, b) => b.order - a.order);
 }
