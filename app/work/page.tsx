@@ -5,6 +5,9 @@ import { getAllProjects } from "@/content/lib";
 export const metadata: Metadata = {
   title: "Work — bare-necessities.studio",
   description: "Projects and things I've built.",
+  alternates: {
+    canonical: "/work/",
+  },
 };
 
 export default function WorkPage() {
