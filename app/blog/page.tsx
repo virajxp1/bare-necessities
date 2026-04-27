@@ -5,6 +5,9 @@ import { getAllPosts } from "@/content/lib";
 export const metadata: Metadata = {
   title: "Blog — bare-necessities.studio",
   description: "Notes on what I'm building and learning.",
+  alternates: {
+    canonical: "/blog/",
+  },
 };
 
 export default function BlogIndex() {

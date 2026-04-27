@@ -5,6 +5,9 @@ import { getTimeline } from "@/content/lib";
 export const metadata: Metadata = {
   title: "About — bare-necessities.studio",
   description: "A short bio and a timeline of chapters so far.",
+  alternates: {
+    canonical: "/about/",
+  },
 };
 
 export default function AboutPage() {
