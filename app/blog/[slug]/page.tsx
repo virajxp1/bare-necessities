@@ -24,6 +24,9 @@ export async function generateMetadata({
   return {
     title: `${post.title} — bare-necessities.studio`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${slug}/`,
+    },
   };
 }
 
