@@ -6,6 +6,7 @@ import { getAllPosts, getAllProjects } from "@/content/lib";
 export default function Home() {
   const featuredProjects = getAllProjects().slice(0, 3);
   const recentPosts = getAllPosts().slice(0, 3);
+  const [leadProject, ...supportProjects] = featuredProjects;
   const [leadPost, ...sidePosts] = recentPosts;
   const buildYear = new Date().getFullYear();
 
@@ -26,10 +27,10 @@ export default function Home() {
         </div>
         <hr className="rule-double" />
 
-        <div className="mt-[var(--space-xl)] grid gap-[var(--space-xl)] md:grid-cols-12 md:items-end">
-          <div className="md:col-span-8">
+        <div className="mt-[var(--space-xl)] mx-auto flex max-w-[56rem] flex-col items-center text-center">
+          <div>
             <p
-              className="eyebrow flex items-center gap-2"
+              className="eyebrow inline-flex items-center gap-2"
               style={{ color: "var(--color-blue)" }}
             >
               <span
@@ -37,7 +38,7 @@ export default function Home() {
                 className="h-1.5 w-1.5 rounded-full"
                 style={{ background: "var(--color-blue)" }}
               />
-              Backend engineer — open to new work
+              Work and writing
             </p>
             <h1
               className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight"
@@ -54,48 +55,36 @@ export default function Home() {
                 />
               </span>
             </h1>
-            <p
-              className="mt-[var(--space-md)] max-w-[28ch] font-[family-name:var(--font-display)] font-medium tracking-tight text-[var(--color-ink)]"
-              style={{ fontSize: "var(--text-lead)", lineHeight: 1.2 }}
-            >
-              I build clean, fast tools I wish existed.
-            </p>
           </div>
-          <div className="md:col-span-4 md:pb-3">
-            <p className="max-w-[32ch] text-[var(--color-muted-text)]">
-              I&rsquo;m a backend engineer. I write here about simplicity,
-              small teams, and systems that age well.
-            </p>
-            <div className="mt-[var(--space-md)] flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/work"
-                className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm px-5 text-sm font-semibold tracking-wide transition-colors hover:bg-[var(--color-blue-deep)]"
-                style={{
-                  background: "var(--color-ink)",
-                  color: "var(--color-bg)",
-                }}
+          <div className="mt-[var(--space-lg)] flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/work"
+              className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm px-5 text-sm font-semibold tracking-wide transition-colors hover:bg-[var(--color-blue-deep)]"
+              style={{
+                background: "var(--color-ink)",
+                color: "var(--color-bg)",
+              }}
+            >
+              <span>View work</span>
+              <span
+                aria-hidden
+                className="inline-block transition-transform group-hover:translate-x-1"
               >
-                <span>View work</span>
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
-              <Link
-                href="/blog"
-                className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm border-2 border-[var(--color-blue)] px-5 text-sm font-semibold tracking-wide text-[var(--color-blue)] transition-colors hover:bg-[var(--color-blue)] hover:text-[var(--color-bg)]"
+                →
+              </span>
+            </Link>
+            <Link
+              href="/blog"
+              className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm border-2 border-[var(--color-blue)] px-5 text-sm font-semibold tracking-wide text-[var(--color-blue)] transition-colors hover:bg-[var(--color-blue)] hover:text-[var(--color-bg)]"
+            >
+              <span>Read the blog</span>
+              <span
+                aria-hidden
+                className="inline-block transition-transform group-hover:translate-x-1"
               >
-                <span>Read the blog</span>
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
-            </div>
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -129,11 +118,46 @@ export default function Home() {
             </Link>
           </div>
           <hr className="rule-accent" />
-          <div className="mt-[var(--space-sm)]">
-            {featuredProjects.map((project) => (
-              <ProjectRow key={project.slug} project={project} />
-            ))}
-          </div>
+
+          {leadProject ? (
+            <Link
+              href={`/work/${leadProject.slug}`}
+              className="group mt-[var(--space-xl)] block border-b border-[var(--color-ink)]/16 pb-[var(--space-lg)]"
+            >
+              <div className="grid gap-[var(--space-lg)] md:grid-cols-[minmax(0,1.5fr)_minmax(16rem,1fr)]">
+                <div>
+                  <p className="masthead-meta" style={{ color: "var(--color-blue)" }}>
+                    Featured dossier
+                  </p>
+                  <h3
+                    className="mt-[var(--space-sm)] max-w-[14ch] font-[family-name:var(--font-display)] font-extrabold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-accent)]"
+                    style={{ fontSize: "var(--text-h2)" }}
+                  >
+                    {leadProject.title}
+                  </h3>
+                  <p className="mt-[var(--space-sm)] max-w-[48ch] text-[var(--color-ink)]/82">
+                    {leadProject.summary}
+                  </p>
+                </div>
+                <div className="grid content-start gap-[var(--space-sm)] border-t border-[var(--color-ink)]/15 pt-[var(--space-md)] md:border-l md:border-t-0 md:pl-[var(--space-lg)] md:pt-0">
+                  <p className="masthead-meta text-[var(--color-ink)]/58">
+                    {leadProject.tags.join(" · ")}
+                  </p>
+                  <p className="masthead-meta text-[var(--color-accent-strong)]">
+                    Open full project note →
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ) : null}
+
+          {supportProjects.length > 0 ? (
+            <div className="mt-[var(--space-sm)]">
+              {supportProjects.map((project) => (
+                <ProjectRow key={project.slug} project={project} />
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -227,7 +251,7 @@ export default function Home() {
               </p>
             </Link>
           )}
-          {sidePosts.length > 0 && (
+          {sidePosts.length > 0 ? (
             <ul className="md:col-span-5 flex flex-col gap-[var(--space-md)] md:border-l md:border-[var(--color-ink)]/15 md:pl-[var(--space-lg)]">
               {sidePosts.map((post) => (
                 <li key={post.slug}>
@@ -252,6 +276,21 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          ) : (
+            <div className="grid content-start gap-[var(--space-sm)] border-t border-[var(--color-ink)]/15 pt-[var(--space-md)] md:col-span-5 md:border-l md:border-t-0 md:pl-[var(--space-lg)] md:pt-0">
+              <p className="eyebrow-cool">Filed next</p>
+              <p className="max-w-[30ch] text-[var(--color-ink)]/72">
+                The journal stays intentionally small. Entries only land here
+                when there&rsquo;s a concrete lesson, tradeoff, or system worth
+                keeping.
+              </p>
+              <Link
+                href="/about"
+                className="masthead-meta text-[var(--color-blue)] transition-colors hover:text-[var(--color-accent-strong)]"
+              >
+                More about how I work →
+              </Link>
+            </div>
           )}
         </div>
       </section>

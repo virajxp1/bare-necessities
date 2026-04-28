@@ -7,6 +7,7 @@ tags:
   - Next.js
   - FastAPI
   - Supabase
+projectUrl: https://forkfolio-fe.onrender.com/
 repoUrl: https://github.com/virajxp1/forkfolio
 ---
 

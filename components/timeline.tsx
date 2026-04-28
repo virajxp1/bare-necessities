@@ -9,11 +9,11 @@ export function Timeline({
 }) {
   const textColor = inverted ? "var(--color-bg)" : "var(--color-ink)";
   const mutedColor = inverted
-    ? "rgb(253 240 213 / 0.7)"
+    ? "color-mix(in srgb, var(--color-bg) 70%, transparent)"
     : "var(--color-ink)";
   const ringColor = inverted ? "var(--color-ink)" : "var(--color-bg)";
   const ruleColor = inverted
-    ? "rgb(253 240 213 / 0.25)"
+    ? "color-mix(in srgb, var(--color-bg) 25%, transparent)"
     : "var(--color-rule)";
 
   return (

@@ -35,11 +35,6 @@ export type ProjectMeta = {
 };
 
 export type Project = ProjectMeta & { html: string };
-export type ProjectLink = {
-  href: string;
-  label: string;
-  external: boolean;
-};
 
 export type TimelineTone = "formation" | "current" | "permanent";
 
@@ -131,30 +126,6 @@ export function getProject(slug: string): Project | null {
     slug,
     ...(parsed.data as Omit<ProjectMeta, "slug">),
     html,
-  };
-}
-
-export function getProjectLink(project: ProjectMeta): ProjectLink {
-  if (project.projectUrl) {
-    return {
-      href: project.projectUrl,
-      label: project.projectUrl.startsWith("/") ? "View project →" : "Visit site ↗",
-      external: !project.projectUrl.startsWith("/"),
-    };
-  }
-
-  if (project.repoUrl) {
-    return {
-      href: project.repoUrl,
-      label: "GitHub ↗",
-      external: true,
-    };
-  }
-
-  return {
-    href: `/work/${project.slug}`,
-    label: "Read more →",
-    external: false,
   };
 }
 

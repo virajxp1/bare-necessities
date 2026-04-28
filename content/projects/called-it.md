@@ -7,6 +7,7 @@ tags:
   - Next.js
   - Convex
   - TypeScript
+projectUrl: https://called-it.onrender.com/
 repoUrl: https://github.com/virajxp1/called-it
 ---
 

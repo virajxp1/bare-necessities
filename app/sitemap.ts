@@ -28,13 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const projectRoutes: MetadataRoute.Sitemap = getAllProjects()
-    .filter((project) => !project.projectUrl && !project.repoUrl)
-    .map((project) => ({
+  const projectRoutes: MetadataRoute.Sitemap = getAllProjects().map(
+    (project) => ({
       url: `${siteConfig.url}/work/${project.slug}/`,
       changeFrequency: "monthly",
       priority: 0.7,
-    }));
+    }),
+  );
 
   const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}/`,

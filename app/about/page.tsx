@@ -33,14 +33,14 @@ export default function AboutPage() {
             className="font-[family-name:var(--font-display)] font-extrabold tracking-tight"
             style={{ fontSize: "var(--text-h1)" }}
           >
-            Hi, I&rsquo;m{" "}
+            About{" "}
             <span className="relative inline-block">
               <span className="relative z-10 text-[var(--color-accent)]">
-                Viraj.
+                Me
               </span>
               <span
                 aria-hidden
-                className="absolute inset-x-0 bottom-[0.1em] -z-0 h-[0.22em] bg-[var(--color-accent-strong)]/25"
+                className="absolute inset-x-0 bottom-[0.08em] -z-0 h-[0.18em] bg-[var(--color-blue)]/20"
               />
             </span>
           </h1>
