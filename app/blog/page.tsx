@@ -74,7 +74,14 @@ export default function BlogIndex() {
                 </p>
               </div>
               <div className="md:col-span-9">
-                <span className="chip">{featured.category}</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="chip">{featured.category}</span>
+                  {featured.tags?.map((tag) => (
+                    <span key={tag} className="chip chip-blue-soft">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
                 <h2
                   className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-accent-strong)]"
                   style={{ fontSize: "var(--text-h1)" }}

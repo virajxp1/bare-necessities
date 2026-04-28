@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getAllProjects, getProject } from "@/content/lib";
+import { notFound, permanentRedirect } from "next/navigation";
+import { getAllProjects, getProject, getProjectLink } from "@/content/lib";
 
 type WorkProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -38,6 +38,11 @@ export default async function WorkProjectPage({
 
   if (!project) {
     notFound();
+  }
+
+  if (project.projectUrl || project.repoUrl) {
+    const link = getProjectLink(project);
+    permanentRedirect(link.href);
   }
 
   return (

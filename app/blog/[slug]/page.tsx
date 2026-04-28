@@ -62,6 +62,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <header className="mt-[var(--space-xl)]">
         <div className="flex flex-wrap items-center gap-3">
           <span className="chip chip-blue">{post.category}</span>
+          {post.tags?.map((tag) => (
+            <span key={tag} className="chip chip-blue-soft">
+              {tag}
+            </span>
+          ))}
           <span className="masthead-meta text-[var(--color-ink)]/60">
             {post.readTime}
           </span>
