@@ -1,6 +1,8 @@
 ---
 title: Turning messy recipes into a searchable, remixable cooking workspace
 category: Case Study
+tags:
+  - forkfolio
 readTime: 6 min
 date: April 2026
 order: 1

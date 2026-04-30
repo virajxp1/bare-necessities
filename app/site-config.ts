@@ -8,7 +8,7 @@ export const siteConfig = {
   name: "bare-necessities.studio",
   title: "bare-necessities.studio — Viraj Parikh",
   description:
-    "Backend engineer in Austin. Notes on simplicity, small teams, and systems that age well.",
+    "Engineer in Austin. Work and notes.",
   url: normalizeSiteUrl(process.env.PAGES_BASE_URL ?? defaultSiteUrl),
 } as const;
 

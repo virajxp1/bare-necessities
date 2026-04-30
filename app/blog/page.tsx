@@ -35,7 +35,16 @@ export default function BlogIndex() {
             className="mt-[var(--space-sm)] font-[family-name:var(--font-display)] font-extrabold tracking-tight"
             style={{ fontSize: "var(--text-h1)" }}
           >
-            Thinking out loud.
+            Thinking{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-[var(--color-blue)]">
+                out loud.
+              </span>
+              <span
+                aria-hidden
+                className="absolute inset-x-0 bottom-[0.08em] -z-0 h-[0.18em] bg-[var(--color-accent)]/18"
+              />
+            </span>
           </h1>
         </div>
         <p className="md:col-span-4 md:pb-2 max-w-[36ch] text-[var(--color-ink)]/75">
@@ -74,7 +83,14 @@ export default function BlogIndex() {
                 </p>
               </div>
               <div className="md:col-span-9">
-                <span className="chip">{featured.category}</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="chip">{featured.category}</span>
+                  {featured.tags?.map((tag) => (
+                    <span key={tag} className="chip chip-blue-soft">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
                 <h2
                   className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-accent-strong)]"
                   style={{ fontSize: "var(--text-h1)" }}
@@ -153,6 +169,29 @@ export default function BlogIndex() {
             })}
           </ol>
         </>
+      )}
+
+      {rest.length === 0 && (
+        <section className="mt-[var(--space-2xl)] grid gap-[var(--space-md)] border-t border-[var(--color-ink)]/16 pt-[var(--space-lg)] md:grid-cols-12 md:items-start">
+          <div className="md:col-span-3">
+            <p className="eyebrow-cool">Filed next</p>
+          </div>
+          <div className="md:col-span-6">
+            <p className="max-w-[46ch] text-[var(--color-ink)]/72">
+              The journal is intentionally sparse. I only add to it when
+              there&rsquo;s a specific decision, failure, or tradeoff worth
+              preserving for later.
+            </p>
+          </div>
+          <div className="md:col-span-3 md:justify-self-end">
+            <Link
+              href="/work"
+              className="masthead-meta text-[var(--color-blue)] transition-colors hover:text-[var(--color-accent-strong)]"
+            >
+              See the projects behind it →
+            </Link>
+          </div>
+        </section>
       )}
     </div>
   );

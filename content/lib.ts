@@ -14,6 +14,7 @@ export type PostMeta = {
   slug: string;
   title: string;
   category: string;
+  tags?: string[];
   readTime: string;
   date: string;
   order: number;
@@ -29,6 +30,8 @@ export type ProjectMeta = {
   order: number;
   summary: string;
   tags: string[];
+  projectUrl?: string;
+  repoUrl?: string;
 };
 
 export type Project = ProjectMeta & { html: string };

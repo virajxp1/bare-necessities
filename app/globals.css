@@ -15,6 +15,8 @@
   --color-soft-fill: color-mix(in srgb, var(--color-surface-alt) 55%, var(--color-bg));
   --color-cta-hover: color-mix(in srgb, var(--color-accent) 86%, var(--color-ink));
   --color-focus: var(--color-accent-strong);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
@@ -73,6 +75,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "ss01", "kern";
+  min-width: 320px;
 }
 
 h1, h2, h3, h4 {
@@ -89,6 +92,8 @@ p {
 
 a {
   color: inherit;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.18em;
 }
 
 :focus-visible {

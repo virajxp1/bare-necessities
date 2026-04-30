@@ -80,6 +80,50 @@ export default async function WorkProjectPage({
         >
           {project.summary}
         </p>
+        {(project.projectUrl || project.repoUrl) && (
+          <div className="mt-[var(--space-lg)] flex flex-wrap gap-3">
+            {project.projectUrl && (
+              <a
+                href={project.projectUrl}
+                target={project.projectUrl.startsWith("/") ? undefined : "_blank"}
+                rel={
+                  project.projectUrl.startsWith("/")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
+                className="group inline-flex h-12 items-center gap-3 rounded-sm px-5 text-sm font-semibold tracking-wide transition-colors hover:bg-[var(--color-blue-deep)]"
+                style={{
+                  background: "var(--color-ink)",
+                  color: "var(--color-bg)",
+                }}
+              >
+                <span>Visit live project</span>
+                <span
+                  aria-hidden
+                  className="inline-block transition-transform group-hover:translate-x-0.5"
+                >
+                  {project.projectUrl.startsWith("/") ? "→" : "↗"}
+                </span>
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex h-12 items-center gap-3 rounded-sm border-2 border-[var(--color-blue)] px-5 text-sm font-semibold tracking-wide text-[var(--color-blue)] transition-colors hover:bg-[var(--color-blue)] hover:text-[var(--color-bg)]"
+              >
+                <span>View source</span>
+                <span
+                  aria-hidden
+                  className="inline-block transition-transform group-hover:translate-x-0.5"
+                >
+                  ↗
+                </span>
+              </a>
+            )}
+          </div>
+        )}
         <dl className="masthead-meta mt-[var(--space-lg)] grid gap-x-6 gap-y-2 text-[var(--color-ink)]/60 sm:grid-cols-[auto_1fr]">
           <dt style={{ color: "var(--color-blue)" }}>Shipped</dt>
           <dd className="tabular">{project.year}</dd>
