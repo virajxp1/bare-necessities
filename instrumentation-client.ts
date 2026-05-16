@@ -5,7 +5,7 @@ const posthogToken = process.env.NEXT_PUBLIC_POSTHOG_TOKEN;
 const posthogHost =
   process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
 const posthogAppEnvironment =
-  process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "development";
+  process.env.NEXT_PUBLIC_APP_ENV ?? process.env.NODE_ENV ?? "development";
 
 function getAppProperties() {
   return {
