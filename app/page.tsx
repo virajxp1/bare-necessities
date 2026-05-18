@@ -1,299 +1,295 @@
 import Link from "next/link";
-import { ProjectRow } from "@/components/project-row";
-import { YearText } from "@/components/year-text";
-import { getAllPosts, getAllProjects } from "@/content/lib";
+import { getAllPosts, getAllProjects, type ProjectMeta } from "@/content/lib";
+import { NowPanel } from "@/components/living-index/hero-effects";
+
+const TICKER_ITEMS = [
+  "ForkFolio",
+  "Auto Browse",
+  "Called It",
+  "Journal notes",
+  "Open to collaboration",
+  "Source available on GitHub",
+];
+
+const STATUS_BY_SLUG: Record<string, { label: string; cls: string }> = {
+  forkfolio: { label: "In flight", cls: "li-status--wip" },
+  "auto-browse": { label: "Live", cls: "li-status--live" },
+  "called-it": { label: "Live", cls: "li-status--live" },
+};
+
+function splitTitle(t: string): [string, string] {
+  // Split a project name into a "plain head" + an "italic tail" for the
+  // mixed-roman/italic display. Falls back to a clean break if there's no
+  // good seam.
+  const trimmed = t.trim();
+  const m = trimmed.match(/^(\w+?)([A-Z]\w*)$/); // CamelCase like ForkFolio
+  if (m) return [m[1], m[2]];
+  const space = trimmed.lastIndexOf(" ");
+  if (space > 0) return [trimmed.slice(0, space + 1), trimmed.slice(space + 1)];
+  // single word → split roughly half-way
+  const mid = Math.ceil(trimmed.length / 2);
+  return [trimmed.slice(0, mid), trimmed.slice(mid)];
+}
+
+function projectHref(slug: string) {
+  return `/work/${slug}`;
+}
+
+function buildIndexedProjects(projects: ProjectMeta[]) {
+  return projects.slice(0, 3).map((p, i) => ({
+    ...p,
+    index: String(i + 1).padStart(2, "0"),
+    status: STATUS_BY_SLUG[p.slug] ?? { label: "Live", cls: "li-status--live" },
+  }));
+}
 
 export default function Home() {
-  const featuredProjects = getAllProjects().slice(0, 3);
-  const recentPosts = getAllPosts().slice(0, 3);
-  const [leadProject, ...supportProjects] = featuredProjects;
-  const [leadPost, ...sidePosts] = recentPosts;
-  const buildYear = new Date().getFullYear();
+  const projects = buildIndexedProjects(getAllProjects());
+  const posts = getAllPosts().slice(0, 4);
 
   return (
-    <div>
-      <section className="mx-auto w-full max-w-[var(--container-wide)] px-6 pb-[var(--space-2xl)] pt-[var(--space-xl)] md:px-10 md:pt-[var(--space-2xl)]">
-        <div className="masthead-meta flex items-center justify-between gap-4 pb-[var(--space-md)] text-[var(--color-ink)]">
-          <span className="flex items-center gap-3">
-            <span style={{ color: "var(--color-blue)" }}>Vol. I</span>
-            <span aria-hidden className="h-px w-10 bg-[var(--color-ink)]/60" />
-            <span>
-              Issue <YearText fallbackYear={buildYear} />
-            </span>
-          </span>
-          <span className="hidden text-[var(--color-ink)]/70 md:inline">
-            Austin · Texas
-          </span>
-        </div>
-        <hr className="rule-double" />
-
-        <div className="mt-[var(--space-xl)] mx-auto flex max-w-[56rem] flex-col items-center text-center">
-          <div>
-            <p
-              className="eyebrow inline-flex items-center gap-2"
-              style={{ color: "var(--color-blue)" }}
-            >
-              <span
-                aria-hidden
-                className="h-1.5 w-1.5 rounded-full"
-                style={{ background: "var(--color-blue)" }}
-              />
-              Work and writing
-            </p>
-            <h1
-              className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight"
-              style={{ fontSize: "var(--text-display)" }}
-            >
-              Hi, I&rsquo;m{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-[var(--color-accent)]">
-                  Viraj.
-                </span>
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-[0.1em] -z-0 h-[0.22em] bg-[var(--color-accent-strong)]/25"
-                />
-              </span>
-            </h1>
+    <div className="li-root">
+      {/* ── HERO ── */}
+      <section className="li-hero">
+        <div>
+          <div className="li-hero__eyebrow">
+            <span className="li-pill li-pill--lime">Portfolio · 2026</span>
+            <span className="li-mono-eyebrow li-eyebrow-dot">Texas</span>
+            <span className="li-stamp">Open to chat</span>
           </div>
-          <div className="mt-[var(--space-lg)] flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/work"
-              className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm px-5 text-sm font-semibold tracking-wide transition-colors hover:bg-[var(--color-blue-deep)]"
-              style={{
-                background: "var(--color-ink)",
-                color: "var(--color-bg)",
-              }}
-            >
-              <span>View work</span>
-              <span
-                aria-hidden
-                className="inline-block transition-transform group-hover:translate-x-1"
-              >
-                →
-              </span>
+
+          <h1 className="li-hero__headline">
+            I build <em>small,</em>
+            <br />
+            <span className="scribble">
+              useful
+              <svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden>
+                <path d="M2,18 C 60,4 140,28 230,10 S 296,18 298,14" />
+              </svg>
+            </span>{" "}
+            systems<span className="ampersand">&amp;</span>
+            <br />
+            then write
+            <br />
+            them <em>down.</em>
+            <span className="cursor" />
+          </h1>
+
+          <p className="li-hero__sub">
+            Engineer in Texas. Mostly full-stack — <em>Next.js</em>, Python,
+            and tiny LLM-flavored pipelines.
+          </p>
+
+          <div className="li-hero__cta">
+            <Link className="li-btn li-btn--primary" href="/work">
+              View work <span className="li-arrow">↗</span>
             </Link>
-            <Link
-              href="/blog"
-              className="group inline-flex h-12 items-center justify-between gap-6 rounded-sm border-2 border-[var(--color-blue)] px-5 text-sm font-semibold tracking-wide text-[var(--color-blue)] transition-colors hover:bg-[var(--color-blue)] hover:text-[var(--color-bg)]"
-            >
-              <span>Read the blog</span>
-              <span
-                aria-hidden
-                className="inline-block transition-transform group-hover:translate-x-1"
-              >
-                →
-              </span>
+            <Link className="li-btn" href="/blog">
+              Read writing
             </Link>
+            <a
+              className="li-btn"
+              href="https://github.com/virajxp1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <em style={{ marginLeft: 4 }}>↗</em>
+            </a>
           </div>
         </div>
-      </section>
 
-      <section className="bg-[var(--color-surface-alt)]">
-        <div className="mx-auto w-full max-w-[var(--container-wide)] px-6 py-[var(--space-2xl)] md:px-10">
-          <div className="flex items-end justify-between gap-6 pb-[var(--space-sm)]">
-            <div className="flex items-end gap-4">
-              <span className="section-mark tabular">N° 01</span>
+        <aside className="li-hero__aside">
+          <NowPanel />
+          <div className="li-quick-card" aria-label="Site context">
+            <dl className="li-quick-card__list">
               <div>
-                <p className="eyebrow">Selected work</p>
-                <h2
-                  className="mt-1 font-[family-name:var(--font-display)] font-bold tracking-tight"
-                  style={{ fontSize: "var(--text-h2)" }}
-                >
-                  A few recent things.
-                </h2>
+                <dt>Focused system</dt>
+                <dd>{projects[0]?.title ?? "Work archive"}</dd>
               </div>
-            </div>
-            <Link
-              href="/work"
-              className="group shrink-0 text-sm font-medium text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)]"
-            >
-              View all
-              <span
-                aria-hidden
-                className="ml-1 inline-block transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </Link>
+              <div>
+                <dt>Latest note</dt>
+                <dd>{posts[0]?.date ?? "Journal"}</dd>
+              </div>
+              <div>
+                <dt>Base</dt>
+                <dd>Texas</dd>
+              </div>
+            </dl>
           </div>
-          <hr className="rule-accent" />
+        </aside>
+      </section>
 
-          {leadProject ? (
-            <Link
-              href={`/work/${leadProject.slug}`}
-              className="group mt-[var(--space-xl)] block border-b border-[var(--color-ink)]/16 pb-[var(--space-lg)]"
-            >
-              <div className="grid gap-[var(--space-lg)] md:grid-cols-[minmax(0,1.5fr)_minmax(16rem,1fr)]">
-                <div>
-                  <p className="masthead-meta" style={{ color: "var(--color-blue)" }}>
-                    Featured dossier
-                  </p>
-                  <h3
-                    className="mt-[var(--space-sm)] max-w-[14ch] font-[family-name:var(--font-display)] font-extrabold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-accent)]"
-                    style={{ fontSize: "var(--text-h2)" }}
-                  >
-                    {leadProject.title}
-                  </h3>
-                  <p className="mt-[var(--space-sm)] max-w-[48ch] text-[var(--color-ink)]/82">
-                    {leadProject.summary}
-                  </p>
-                </div>
-                <div className="grid content-start gap-[var(--space-sm)] border-t border-[var(--color-ink)]/15 pt-[var(--space-md)] md:border-l md:border-t-0 md:pl-[var(--space-lg)] md:pt-0">
-                  <p className="masthead-meta text-[var(--color-ink)]/58">
-                    {leadProject.tags.join(" · ")}
-                  </p>
-                  <p className="masthead-meta text-[var(--color-accent-strong)]">
-                    Open full project note →
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ) : null}
+      {/* ── TICKER ── */}
+      <div className="li-ticker" aria-hidden>
+        <div className="li-ticker__track">
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+            <span key={i} className="li-ticker__item">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
 
-          {supportProjects.length > 0 ? (
-            <div className="mt-[var(--space-sm)]">
-              {supportProjects.map((project) => (
-                <ProjectRow key={project.slug} project={project} />
-              ))}
-            </div>
-          ) : null}
+      {/* ── SELECTED WORK ── */}
+      <section className="li-section">
+        <div className="li-section__head">
+          <div>
+            <span className="li-section__num">§ 01 — Selected work</span>
+            <h2 className="li-section__title">
+              A few recent <em>systems</em>
+            </h2>
+          </div>
+          <Link
+            href="/work"
+            className="li-link li-mono"
+            style={{ fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase" }}
+          >
+            See all →
+          </Link>
+        </div>
+
+        <div className="li-grid-work">
+          {projects.map((project, i) => {
+            const [head, tail] = splitTitle(project.title);
+            const isFeature = i === 0;
+            return (
+              <Link
+                key={project.slug}
+                href={projectHref(project.slug)}
+                className={`li-work-card${isFeature ? " li-work-card--feature" : ""}`}
+              >
+                <div className="li-work-card__top">
+                  <span className="li-work-card__num">
+                    {project.index} / {project.year}
+                    {isFeature ? " — featured" : ""}
+                  </span>
+                  <span className={`li-status ${project.status.cls}`}>
+                    {project.status.label}
+                  </span>
+                </div>
+                <h3 className="li-work-card__title">
+                  {head}
+                  <em>{tail}</em>
+                </h3>
+                <p className="li-work-card__desc">{project.summary}</p>
+
+                {isFeature ? (
+                  <div className="li-work-card__preview">
+                    <div>
+                      <span className="c">{"// extract.ts"}</span>
+                    </div>
+                    <div>
+                      <span className="k">export async</span>{" "}
+                      <span className="k">function</span>{" "}
+                      <span className="n">parseRecipe</span>(url
+                      <span className="c">:</span>{" "}
+                      <span className="k">string</span>)
+                    </div>
+                    <div>
+                      {"  → "}
+                      <span className="s">
+                        {"{ ingredients, steps, time, yields }"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="c">{"// import → clean → embed → search"}</span>
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="li-work-card__stack">
+                  {project.tags.slice(0, 5).map((tag) => (
+                    <span key={tag} className="li-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="li-work-card__cta">
+                  <span>{isFeature ? "Read project" : "Read more"}</span>
+                  <span className="li-arrow">→</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      <section className="bg-[var(--color-ink)] text-[var(--color-bg)]">
-        <div className="mx-auto w-full max-w-[var(--container-wide)] px-6 py-[var(--space-2xl)] md:px-10">
-          <div className="grid gap-[var(--space-lg)] md:grid-cols-12 md:items-center">
-            <div className="md:col-span-2">
-              <p className="masthead-meta text-[var(--color-accent)]">
-                Credo
-              </p>
-            </div>
-            <blockquote className="md:col-span-8">
-              <p
-                className="font-[family-name:var(--font-display)] font-semibold tracking-tight text-[var(--color-bg)]"
-                style={{
-                  fontSize: "clamp(1.75rem, 3vw, 3rem)",
-                  lineHeight: 1.15,
-                }}
-              >
-                Code as if the person maintaining it is a{" "}
-                <span className="text-[var(--color-accent)]">tired</span>{" "}
-                version of you.
-              </p>
-            </blockquote>
-            <p className="masthead-meta text-right text-[var(--color-bg)]/70 md:col-span-2">
-              ¶ 001
-            </p>
-          </div>
+      {/* ── QUOTE ── */}
+      <section className="li-quote">
+        <div className="li-quote__eyebrow">
+          <span className="li-eyebrow-dot" style={{ color: "var(--lime)" }}>
+            The rule I keep
+          </span>
+          <span>—</span>
+          <span>§ 02</span>
         </div>
+        <p className="li-quote__text">
+          Code as if the person <span className="hl">maintaining it</span> is a
+          tired version of you — because in <em>six weeks,</em> it will be.
+        </p>
       </section>
 
-      <section className="mx-auto w-full max-w-[var(--container-wide)] px-6 py-[var(--space-2xl)] md:px-10">
-        <div className="flex items-end justify-between gap-6 pb-[var(--space-sm)]">
-          <div className="flex items-end gap-4">
-            <span className="section-mark tabular">N° 02</span>
-            <div>
-              <p className="eyebrow-cool">Journal</p>
-              <h2
-                className="mt-1 font-[family-name:var(--font-display)] font-bold tracking-tight"
-                style={{ fontSize: "var(--text-h2)" }}
-              >
-                Recent dispatches.
-              </h2>
-            </div>
+      {/* ── JOURNAL ── */}
+      <section className="li-section" style={{ paddingTop: 80 }}>
+        <div className="li-section__head">
+          <div>
+            <span className="li-section__num">§ 03 — Recent writing</span>
+            <h2 className="li-section__title">
+              From the <em>journal</em>
+            </h2>
           </div>
           <Link
             href="/blog"
-            className="group shrink-0 text-sm font-medium transition-colors hover:text-[var(--color-ink)]"
-            style={{ color: "var(--color-blue)" }}
+            className="li-link li-mono"
+            style={{ fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase" }}
           >
-            All posts
-            <span
-              aria-hidden
-              className="ml-1 inline-block transition-transform group-hover:translate-x-0.5"
-            >
-              →
-            </span>
+            All posts →
           </Link>
         </div>
-        <hr className="rule-accent" />
-        <div className="mt-[var(--space-xl)] grid gap-[var(--space-xl)] md:grid-cols-12 md:gap-[var(--space-lg)]">
-          {leadPost && (
-            <Link
-              href={`/blog/${leadPost.slug}`}
-              className="group md:col-span-7 block"
-            >
-              <p className="eyebrow-cool">{leadPost.category}</p>
-              <h3
-                className="mt-[var(--space-sm)] font-[family-name:var(--font-display)] font-extrabold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-blue)]"
-                style={{ fontSize: "var(--text-h2)" }}
-              >
-                {leadPost.title}
-              </h3>
-              <p className="mt-[var(--space-sm)] max-w-[58ch] text-[var(--color-ink)]/80">
-                {leadPost.excerpt}
-              </p>
-              <p className="masthead-meta mt-[var(--space-md)] flex items-center gap-3 text-[var(--color-ink)]/55">
-                <span className="tabular">{leadPost.date}</span>
-                <span aria-hidden>·</span>
-                <span>{leadPost.readTime}</span>
-                <span
-                  aria-hidden
-                  className="h-px flex-1 border-t border-dotted border-[var(--color-ink)]/30"
-                />
-                <span
-                  aria-hidden
-                  className="text-[var(--color-accent-strong)] transition-transform group-hover:translate-x-0.5"
+
+        {posts.length > 0 ? (
+          <div className="li-journal">
+            {posts.map((post) => {
+              const [head, tail] = splitTitle(post.title);
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="li-journal-item"
                 >
-                  →
-                </span>
-              </p>
-            </Link>
-          )}
-          {sidePosts.length > 0 ? (
-            <ul className="md:col-span-5 flex flex-col gap-[var(--space-md)] md:border-l md:border-[var(--color-ink)]/15 md:pl-[var(--space-lg)]">
-              {sidePosts.map((post) => (
-                <li key={post.slug}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group block border-t border-[var(--color-ink)]/15 pt-[var(--space-md)]"
-                  >
-                    <p className="masthead-meta flex items-center gap-2 text-[var(--color-ink)]/55">
-                      <span
-                        className="tabular"
-                        style={{ color: "var(--color-blue)" }}
-                      >
-                        {post.date}
-                      </span>
-                      <span aria-hidden>·</span>
-                      <span>{post.category}</span>
-                    </p>
-                    <h4 className="mt-2 font-[family-name:var(--font-display)] text-[var(--text-h3)] font-bold tracking-tight text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-blue)]">
-                      {post.title}
-                    </h4>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="grid content-start gap-[var(--space-sm)] border-t border-[var(--color-ink)]/15 pt-[var(--space-md)] md:col-span-5 md:border-l md:border-t-0 md:pl-[var(--space-lg)] md:pt-0">
-              <p className="eyebrow-cool">Filed next</p>
-              <p className="max-w-[30ch] text-[var(--color-ink)]/72">
-                The journal stays intentionally small. Entries only land here
-                when there&rsquo;s a concrete lesson, tradeoff, or system worth
-                keeping.
-              </p>
-              <Link
-                href="/about"
-                className="masthead-meta text-[var(--color-blue)] transition-colors hover:text-[var(--color-accent-strong)]"
-              >
-                More about how I work →
-              </Link>
-            </div>
-          )}
-        </div>
+                  <span className="li-journal-item__date">{post.date}</span>
+                  <h3 className="li-journal-item__title">
+                    {head}
+                    <em>{tail}</em>
+                  </h3>
+                  <span className="li-journal-item__meta">
+                    <span>{post.readTime}</span>
+                    <span className="li-arrow">→</span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <p style={{ color: "var(--ink-3)", fontFamily: "var(--mono)", fontSize: 13 }}>
+            {"// queued — next post lands when there&apos;s a tradeoff worth keeping"}
+          </p>
+        )}
       </section>
+
+      {/* ── FOOT ── */}
+      <footer className="li-foot">
+        <span>© 2026 · Viraj Parikh · Texas</span>
+        <span className="li-foot__links">
+          <a href="https://github.com/virajxp1" target="_blank" rel="noopener noreferrer">
+            GitHub ↗
+          </a>
+          <a href="https://www.linkedin.com/in/vhparikh/" target="_blank" rel="noopener noreferrer">
+            LinkedIn ↗
+          </a>
+          <Link href="/about">Colophon →</Link>
+        </span>
+      </footer>
     </div>
   );
 }

@@ -14,122 +14,108 @@ export default function AboutPage() {
   const chapters = getTimeline();
 
   return (
-    <div>
-      <section className="mx-auto w-full max-w-[var(--container-default)] px-6 pb-[var(--space-2xl)] pt-[var(--space-xl)] md:px-10 md:pt-[var(--space-2xl)]">
-        <div className="masthead-meta flex items-center justify-between gap-4 pb-[var(--space-md)] text-[var(--color-ink)]">
-          <span className="flex items-center gap-3">
-            <span style={{ color: "var(--color-blue)" }}>N° 03</span>
-            <span aria-hidden className="h-px w-10 bg-[var(--color-ink)]/60" />
-            <span>About</span>
-          </span>
-          <span className="hidden text-[var(--color-ink)]/70 md:inline">
-            Austin · Texas
-          </span>
+    <div className="li-root li-page">
+      <section className="li-shell li-pagehead">
+        <div className="li-pagehead__grid">
+          <div>
+            <div className="li-pagehead__eyebrow">
+              <span className="li-pill">Archive 03</span>
+              <span className="li-mono-eyebrow">About</span>
+              <span className="li-mono-eyebrow li-eyebrow-dot">Texas</span>
+            </div>
+
+            <h1 className="li-pagehead__title">
+              A little context <em>around</em> the work.
+            </h1>
+          </div>
+
+          <aside className="li-pagehead__aside">
+            <p>
+              Career-wise I’ve moved from distributed systems into AI platform
+              work. Outside of code, beaches, mountains, music, coffee, and the
+              people around the thing matter more than the thing itself.
+            </p>
+            <dl className="li-pagehead__meta">
+              <div>
+                <dt>Current lane</dt>
+                <dd>Gen AI platform</dd>
+              </div>
+              <div>
+                <dt>Base</dt>
+                <dd>Texas / remote</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
-        <hr className="rule-double" />
+      </section>
 
-        <header className="mt-[var(--space-xl)]">
-          <h1
-            className="font-[family-name:var(--font-display)] font-extrabold tracking-tight"
-            style={{ fontSize: "var(--text-h1)" }}
-          >
-            About{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-[var(--color-accent)]">
-                Me
-              </span>
-              <span
-                aria-hidden
-                className="absolute inset-x-0 bottom-[0.08em] -z-0 h-[0.18em] bg-[var(--color-blue)]/20"
-              />
-            </span>
-          </h1>
-        </header>
-
-        <hr className="rule-accent mt-[var(--space-lg)]" />
-
-        <section className="mt-[var(--space-xl)] grid gap-[var(--space-lg)] md:grid-cols-12">
-          <div className="md:col-span-8 space-y-[var(--space-md)]">
-            <p className="max-w-[60ch] text-lg text-[var(--color-ink)]">
-              <span
-                className="float-left mr-3 font-[family-name:var(--font-display)] font-extrabold leading-[0.85]"
-                style={{
-                  color: "var(--color-accent-strong)",
-                  fontSize: "clamp(3.5rem, 6vw, 5rem)",
-                  paddingTop: "0.1em",
-                }}
-              >
-                W
-              </span>
-              hen I&rsquo;m not at a keyboard, I&rsquo;m chasing beaches
-              and mountains, hunting for fresh snow, or finding a coffee
-              shop I&rsquo;ll definitely become a regular at.
+      <section className="li-shell li-page-section">
+        <div className="li-about-grid">
+          <div className="li-about-copy">
+            <p className="li-about-copy__lead">
+              When I&rsquo;m not at a keyboard, I&rsquo;m chasing beaches and
+              mountains, hunting for fresh snow, or finding a coffee shop I&rsquo;ll
+              definitely become a regular at.
             </p>
 
-            <p className="max-w-[60ch] text-[var(--color-ink)]/90">
-              Family dinners, long drives with no real plan, dance and
-              music that remind me where I come from. The people around
-              the thing usually matter more than the thing itself.
+            <p>
+              Family dinners, long drives with no real plan, dance and music
+              that remind me where I come from. The people around the thing
+              usually matter more than the thing itself.
             </p>
           </div>
 
-          <aside className="md:col-span-4 md:pt-2">
-            <p className="masthead-meta" style={{ color: "var(--color-blue)" }}>
-              Find me on
-            </p>
-            <ul className="mt-[var(--space-sm)] flex flex-wrap gap-2">
-              <li>
+          <aside className="li-sidecard">
+            <div className="li-sidecard__section">
+              <span className="li-sidecard__label">Find me on</span>
+              <div className="li-sidecard__actions">
                 <a
                   href="https://github.com/virajxp1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="chip chip-blue transition-opacity hover:opacity-90"
+                  className="li-btn li-btn--primary"
                 >
-                  GitHub
+                  GitHub <span className="li-arrow">↗</span>
                 </a>
-              </li>
-              <li>
                 <a
                   href="https://www.linkedin.com/in/vhparikh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="chip transition-opacity hover:opacity-90"
-                  style={{ background: "var(--color-blue-deep)" }}
+                  className="li-btn"
                 >
-                  LinkedIn
+                  LinkedIn <span className="li-arrow">↗</span>
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </aside>
-        </section>
+        </div>
       </section>
 
-      <section className="bg-[var(--color-ink)] text-[var(--color-bg)]">
-        <div className="mx-auto w-full max-w-[var(--container-default)] px-6 py-[var(--space-2xl)] md:px-10">
-          <div className="flex items-end justify-between gap-6 pb-[var(--space-sm)]">
-            <div className="flex items-end gap-4">
-              <span
-                className="section-mark tabular"
-                style={{ color: "var(--color-accent)" }}
-              >
-                N° 04
-              </span>
-              <h2
-                className="font-[family-name:var(--font-display)] font-bold tracking-tight"
-                style={{ fontSize: "var(--text-h2)" }}
-              >
-                Where I&rsquo;ve been, where I am.
-              </h2>
-            </div>
-          </div>
-          <hr
-            className="rule-accent"
-            style={{ background: "var(--color-accent)" }}
-          />
-          <div className="mt-[var(--space-xl)]">
-            <Timeline chapters={chapters} inverted />
+      <section className="li-quote li-about-quote">
+        <div className="li-quote__eyebrow">
+          <span className="li-eyebrow-dot" style={{ color: "var(--lime)" }}>
+            Personal rule
+          </span>
+          <span>—</span>
+          <span>§ 01</span>
+        </div>
+        <p className="li-quote__text">
+          The people around the thing usually matter more than the{" "}
+          <em>thing itself.</em>
+        </p>
+      </section>
+
+      <section className="li-shell li-page-section">
+        <div className="li-section__head li-section__head--flush">
+          <div>
+            <span className="li-section__num">§ 02 — Chapters</span>
+            <h2 className="li-section__title">
+              Where I&rsquo;ve been, where I <em>am</em>
+            </h2>
           </div>
         </div>
+
+        <Timeline chapters={chapters} />
       </section>
     </div>
   );
