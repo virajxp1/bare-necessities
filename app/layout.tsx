@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +7,20 @@ import { siteConfig, siteUrl } from "@/app/site-config";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -24,7 +38,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <head>
         <link
           rel="preconnect"
@@ -38,7 +52,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <SiteNav />
-        <main className="flex-1">{children}</main>
+        <main className="min-w-0">{children}</main>
         <SiteFooter />
       </body>
     </html>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllProjects, getProject } from "@/content/lib";
+import { getProjectStatus, splitTitle } from "@/components/living-index/page-utils";
 
 type WorkProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -40,124 +41,95 @@ export default async function WorkProjectPage({
     notFound();
   }
 
+  const [head, tail] = splitTitle(project.title);
+  const status = getProjectStatus(project);
+
   return (
-    <article className="mx-auto w-full max-w-[var(--container-content)] px-6 py-[var(--space-2xl)] md:px-10">
-      <div className="masthead-meta flex items-center justify-between gap-4 pb-[var(--space-md)] text-[var(--color-ink)]">
-        <Link
-          href="/work"
-          className="group inline-flex items-center gap-2 text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)]"
-        >
-          <span
-            aria-hidden
-            className="inline-block transition-transform group-hover:-translate-x-0.5"
-          >
-            ←
-          </span>
-          Back to archive
-        </Link>
-        <span className="tabular text-[var(--color-ink)]/70">
-          {project.year}
-        </span>
-      </div>
-      <hr className="rule-double" />
-
-      <header className="mt-[var(--space-xl)]">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="chip">Project</span>
-          <span className="masthead-meta tabular text-[var(--color-ink)]/60">
-            {project.year}
-          </span>
+    <div className="li-root li-page">
+      <section className="li-shell li-detail">
+        <div className="li-detail__backbar">
+          <Link href="/work" className="li-backlink">
+            <span aria-hidden>←</span>
+            Work archive
+          </Link>
+          <span className="li-mono-eyebrow">{project.year}</span>
         </div>
-        <h1
-          className="mt-[var(--space-md)] font-[family-name:var(--font-display)] font-extrabold tracking-tight"
-          style={{ fontSize: "var(--text-h1)" }}
-        >
-          {project.title}
-        </h1>
-        <p
-          className="mt-[var(--space-md)] max-w-[48ch] font-[family-name:var(--font-display)] font-medium tracking-tight text-[var(--color-ink)]/85"
-          style={{ fontSize: "var(--text-lead)", lineHeight: 1.22 }}
-        >
-          {project.summary}
-        </p>
-        {(project.projectUrl || project.repoUrl) && (
-          <div className="mt-[var(--space-lg)] flex flex-wrap gap-3">
-            {project.projectUrl && (
-              <a
-                href={project.projectUrl}
-                target={project.projectUrl.startsWith("/") ? undefined : "_blank"}
-                rel={
-                  project.projectUrl.startsWith("/")
-                    ? undefined
-                    : "noopener noreferrer"
-                }
-                className="group inline-flex h-12 items-center gap-3 rounded-sm px-5 text-sm font-semibold tracking-wide transition-colors hover:bg-[var(--color-blue-deep)]"
-                style={{
-                  background: "var(--color-ink)",
-                  color: "var(--color-bg)",
-                }}
-              >
-                <span>Visit live project</span>
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform group-hover:translate-x-0.5"
-                >
-                  {project.projectUrl.startsWith("/") ? "→" : "↗"}
-                </span>
-              </a>
-            )}
-            {project.repoUrl && (
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex h-12 items-center gap-3 rounded-sm border-2 border-[var(--color-blue)] px-5 text-sm font-semibold tracking-wide text-[var(--color-blue)] transition-colors hover:bg-[var(--color-blue)] hover:text-[var(--color-bg)]"
-              >
-                <span>View source</span>
-                <span
-                  aria-hidden
-                  className="inline-block transition-transform group-hover:translate-x-0.5"
-                >
-                  ↗
-                </span>
-              </a>
-            )}
+
+        <div className="li-detail__hero">
+          <div>
+            <div className="li-pagehead__eyebrow">
+              <span className="li-pill">Project note</span>
+              <span className="li-mono-eyebrow li-eyebrow-dot">
+                {status.label}
+              </span>
+            </div>
+
+            <h1 className="li-detail__title">
+              {head}
+              <em>{tail}</em>
+            </h1>
+
+            <p className="li-detail__summary">{project.summary}</p>
           </div>
-        )}
-        <dl className="masthead-meta mt-[var(--space-lg)] grid gap-x-6 gap-y-2 text-[var(--color-ink)]/60 sm:grid-cols-[auto_1fr]">
-          <dt style={{ color: "var(--color-blue)" }}>Shipped</dt>
-          <dd className="tabular">{project.year}</dd>
-          <dt style={{ color: "var(--color-blue)" }}>Stack</dt>
-          <dd>{project.tags.join(" · ")}</dd>
-        </dl>
-      </header>
 
-      <hr className="rule-accent mt-[var(--space-lg)]" />
+          <aside className="li-sidecard">
+            <div className="li-sidecard__section">
+              <span className="li-sidecard__label">Shipped</span>
+              <strong>{project.year}</strong>
+            </div>
+            <div className="li-sidecard__section">
+              <span className="li-sidecard__label">Stack</span>
+              <p>{project.tags.join(" · ")}</p>
+            </div>
+            <div className="li-sidecard__section">
+              <span className="li-sidecard__label">Links</span>
+              <div className="li-sidecard__actions">
+                {project.projectUrl ? (
+                  <a
+                    href={project.projectUrl}
+                    target={project.projectUrl.startsWith("/") ? undefined : "_blank"}
+                    rel={
+                      project.projectUrl.startsWith("/")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
+                    className="li-btn li-btn--primary"
+                  >
+                    Live build{" "}
+                    <span className="li-arrow">
+                      {project.projectUrl.startsWith("/") ? "→" : "↗"}
+                    </span>
+                  </a>
+                ) : null}
+                {project.repoUrl ? (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="li-btn"
+                  >
+                    Source <span className="li-arrow">↗</span>
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          </aside>
+        </div>
 
-      <div
-        className="prose-content prose-lead mt-[var(--space-lg)] space-y-5 text-[var(--color-ink)]"
-        dangerouslySetInnerHTML={{ __html: project.html }}
-      />
+        <div className="li-detail__body">
+          <div
+            className="li-prose li-prose--article"
+            dangerouslySetInnerHTML={{ __html: project.html }}
+          />
+        </div>
 
-      <footer className="mt-[var(--space-2xl)] flex items-center gap-4 border-t border-[var(--color-ink)]/15 pt-[var(--space-md)]">
-        <span
-          aria-hidden
-          className="font-[family-name:var(--font-display)] text-2xl"
-          style={{ color: "var(--color-accent)" }}
-        >
-          ¶
-        </span>
-        <p className="masthead-meta text-[var(--color-ink)]/55">
-          End of entry
-        </p>
-        <span aria-hidden className="h-px flex-1 bg-[var(--color-ink)]/15" />
-        <Link
-          href="/work"
-          className="masthead-meta text-[var(--color-accent-strong)] transition-colors hover:text-[var(--color-ink)]"
-        >
-          More from the archive →
-        </Link>
-      </footer>
-    </article>
+        <footer className="li-detail__footer">
+          <span className="li-mono-eyebrow">End of project note</span>
+          <Link href="/work" className="li-backlink">
+            More from the archive <span aria-hidden>→</span>
+          </Link>
+        </footer>
+      </section>
+    </div>
   );
 }

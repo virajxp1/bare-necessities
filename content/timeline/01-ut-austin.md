@@ -2,7 +2,7 @@
 tone: formation
 label: 2018–22
 eyebrow: Foundation
-title: Electrical & Computer Engineering, UT Austin
+title: Electrical & Computer Engineering, University of Texas
 order: 1
 ---
 

@@ -68,7 +68,9 @@ The input can start as either:
 
 From there, the backend runs a multi-stage pipeline:
 
-`recipe URL or raw text -> LLM cleanup -> LLM extraction -> dedupe -> embeddings -> searchable storage`
+```text
+recipe URL or raw text -> LLM cleanup -> LLM extraction -> dedupe -> embeddings -> searchable storage
+```
 
 For URL imports, the service first fetches the source page, strips out
 irrelevant HTML, and extracts readable content. After that, an LLM cleanup step
