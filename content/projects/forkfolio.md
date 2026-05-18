@@ -12,4 +12,6 @@ repoUrl: https://github.com/virajxp1/forkfolio
 ---
 
 Public repo for ForkFolio, a production-oriented recipe platform with import
-flows, semantic search, books, and grocery-list aggregation.
+flows, semantic search, books, and grocery-list aggregation. For the technical
+layout, see the
+[system architecture](https://virajxp1.github.io/forkfolio/architecture.html).
