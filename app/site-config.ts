@@ -1,3 +1,5 @@
+import { siteDescription, siteName, siteTitle } from "./site-metadata";
+
 const defaultSiteUrl = "https://bare-necessities.studio";
 
 function normalizeSiteUrl(url: string) {
@@ -5,10 +7,9 @@ function normalizeSiteUrl(url: string) {
 }
 
 export const siteConfig = {
-  name: "bare-necessities.studio",
-  title: "bare-necessities.studio — Viraj Parikh",
-  description:
-    "Engineer in Texas. Work and notes.",
+  name: siteName,
+  title: siteTitle,
+  description: siteDescription,
   url: normalizeSiteUrl(process.env.PAGES_BASE_URL ?? defaultSiteUrl),
 } as const;
 
