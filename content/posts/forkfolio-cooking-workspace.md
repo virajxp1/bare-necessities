@@ -56,6 +56,10 @@ surface while making it easy to switch models as different tasks evolve. For
 observability, Braintrust acts as the sink for LLM tracing, which matters a lot
 once an AI-heavy app moves past the demo stage.
 
+If you want the full system layout, the
+[ForkFolio architecture map](https://virajxp1.github.io/forkfolio/architecture.html)
+shows the frontend, backend, data layer, and supporting services in one view.
+
 ### Recipe import is an AI pipeline, not just a form submission
 
 One of the most important flows in ForkFolio is taking messy recipe input and
@@ -154,3 +158,6 @@ collaboration stronger as the shared collection expands.
 
 If you want to try it out, ForkFolio is live. Feel free to sign in, import a
 recipe, and see how the pipeline handles it.
+
+If you want the technical layout behind the product, see the
+[ForkFolio system architecture](https://virajxp1.github.io/forkfolio/architecture.html).
