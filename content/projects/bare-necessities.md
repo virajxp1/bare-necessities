@@ -1,7 +1,7 @@
 ---
 title: Bare Necessities
 year: "2026"
-order: 4
+order: 6
 summary: "This portfolio itself: a text-first editorial site for work and writing, built with Next.js 16 and Tailwind CSS."
 tags:
   - Next.js

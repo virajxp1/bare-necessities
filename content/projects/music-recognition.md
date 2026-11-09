@@ -1,7 +1,7 @@
 ---
 title: Music Recognition
 year: "2023"
-order: 5
+order: 7
 summary: An audio fingerprinting project that denoises recorded samples and matches them against a song database with 82% accuracy.
 tags:
   - Python

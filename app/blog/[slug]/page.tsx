@@ -18,11 +18,11 @@ export async function generateMetadata({
   const post = getPost(slug);
 
   if (!post) {
-    return { title: "Post not found — bare-necessities.studio" };
+    return { title: "Post not found · bare-necessities.studio" };
   }
 
   return {
-    title: `${post.title} — bare-necessities.studio`,
+    title: `${post.title} · bare-necessities.studio`,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${slug}/`,

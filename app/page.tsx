@@ -3,6 +3,7 @@ import { getAllPosts, getAllProjects, type ProjectMeta } from "@/content/lib";
 import { NowPanel } from "@/components/living-index/hero-effects";
 
 const TICKER_ITEMS = [
+  "Tiffin",
   "ForkFolio",
   "Auto Browse",
   "Called It",
@@ -12,7 +13,8 @@ const TICKER_ITEMS = [
 ];
 
 const STATUS_BY_SLUG: Record<string, { label: string; cls: string }> = {
-  forkfolio: { label: "In flight", cls: "li-status--wip" },
+  tiffin: { label: "In flight", cls: "li-status--wip" },
+  forkfolio: { label: "Live", cls: "li-status--live" },
   "auto-browse": { label: "Live", cls: "li-status--live" },
   "called-it": { label: "Live", cls: "li-status--live" },
 };
@@ -76,7 +78,7 @@ export default function Home() {
           </h1>
 
           <p className="li-hero__sub">
-            Engineer in Texas. Mostly full-stack — <em>Next.js</em>, Python,
+            Engineer in Texas. Mostly full-stack: <em>Next.js</em>, Python,
             and tiny LLM-flavored pipelines.
           </p>
 
@@ -134,7 +136,7 @@ export default function Home() {
       <section className="li-section">
         <div className="li-section__head">
           <div>
-            <span className="li-section__num">§ 01 — Selected work</span>
+            <span className="li-section__num">§ 01 · Selected work</span>
             <h2 className="li-section__title">
               A few recent <em>systems</em>
             </h2>
@@ -161,7 +163,7 @@ export default function Home() {
                 <div className="li-work-card__top">
                   <span className="li-work-card__num">
                     {project.index} / {project.year}
-                    {isFeature ? " — featured" : ""}
+                    {isFeature ? " · featured" : ""}
                   </span>
                   <span className={`li-status ${project.status.cls}`}>
                     {project.status.label}
@@ -176,23 +178,23 @@ export default function Home() {
                 {isFeature ? (
                   <div className="li-work-card__preview">
                     <div>
-                      <span className="c">{"// extract.ts"}</span>
+                      <span className="c">{"// orders.ts: atomic inventory"}</span>
                     </div>
                     <div>
                       <span className="k">export async</span>{" "}
                       <span className="k">function</span>{" "}
-                      <span className="n">parseRecipe</span>(url
+                      <span className="n">acceptRequest</span>(req
                       <span className="c">:</span>{" "}
-                      <span className="k">string</span>)
+                      <span className="k">Request</span>)
                     </div>
                     <div>
                       {"  → "}
                       <span className="s">
-                        {"{ ingredients, steps, time, yields }"}
+                        {"{ reserved + sold <= quantity }"}
                       </span>
                     </div>
                     <div>
-                      <span className="c">{"// import → clean → embed → search"}</span>
+                      <span className="c">{"// accept → allocate → pickup code → review"}</span>
                     </div>
                   </div>
                 ) : null}
@@ -220,12 +222,12 @@ export default function Home() {
           <span className="li-eyebrow-dot" style={{ color: "var(--lime)" }}>
             The rule I keep
           </span>
-          <span>—</span>
+          <span>·</span>
           <span>§ 02</span>
         </div>
         <p className="li-quote__text">
           Code as if the person <span className="hl">maintaining it</span> is a
-          tired version of you — because in <em>six weeks,</em> it will be.
+          tired version of you, because in <em>six weeks,</em> it will be.
         </p>
       </section>
 
@@ -233,7 +235,7 @@ export default function Home() {
       <section className="li-section" style={{ paddingTop: 80 }}>
         <div className="li-section__head">
           <div>
-            <span className="li-section__num">§ 03 — Recent writing</span>
+            <span className="li-section__num">§ 03 · Recent writing</span>
             <h2 className="li-section__title">
               From the <em>journal</em>
             </h2>
@@ -272,7 +274,7 @@ export default function Home() {
           </div>
         ) : (
           <p style={{ color: "var(--ink-3)", fontFamily: "var(--mono)", fontSize: 13 }}>
-            {"// queued — next post lands when there&apos;s a tradeoff worth keeping"}
+            {"// queued: next post lands when there&apos;s a tradeoff worth keeping"}
           </p>
         )}
       </section>
