@@ -41,7 +41,7 @@
 
 = Experience
 
-#resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "2026 – present", description: "Senior Software Engineer II, Agent Quality")
+#resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – present", description: "Senior Software Engineer II, Agent Quality")
 #items[
   #note[Also interim engineering manager for 7 engineers since September 2026, while still shipping code.]
   - Built HubSpot's in-house LLM evaluation and observability platform, now used to evaluate and monitor hundreds of agents. Evals run from an agent's own codebase or from a UI I built most of, with any tool or external call mockable.
@@ -52,7 +52,7 @@
   - Added ownership and write access control for AI traces, and redaction that strips free text from sensitive traces and fails closed.
 ]
 
-#role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – 2026")
+#role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – Jul 2026")
 #items[
   - Helped design and ship company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka consumers, and SQS queues. It became the data the eval platform runs on.
   - Built the first-generation prompt tooling: A/B testing with p-value analysis, prompt replay, automated prompt tuning, and a UI-driven eval engine. Also a retention system that purged 900GB+ of stored generations.
