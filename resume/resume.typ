@@ -36,7 +36,7 @@
 
 = Summary
 #items[
-  Backend engineer, four years at HubSpot. Two on Calling infrastructure (Java, Kafka, MySQL, 1M+ webhooks a day), then two on AI, where I now build the LLM evaluation platform behind hundreds of agents. Also interim manager for a team of seven.
+  Backend engineer with four years at HubSpot. I started on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day) and moved to AI in 2025. Today I lead work on HubSpot's in-house LLM evaluation and observability platform: eval sweeps that chart quality against cost and latency, skill testing in CI/CD, and a tracing pipeline that takes in hundreds of millions of traces a day.
 ]
 
 = Experience
@@ -44,24 +44,24 @@
 #resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – present", description: "Senior Software Engineer II, Agent Quality")
 #items[
   #note[Also interim engineering manager for 7 engineers since September 2026, while still shipping code.]
-  - Built HubSpot's in-house LLM evaluation and observability platform, now used to evaluate and monitor hundreds of agents. Evals run from an agent's own codebase or from a UI I built most of, with any tool or external call mockable.
-  - Teams define a task and an agent, then kick off sweeps across models, configurations, reasoning levels, and prompt variants in one go. Results plot a Pareto frontier of quality against cost and latency, so teams can see which model or prompt actually wins.
-  - Built skill evals, skill grading, and skill linting for agent skills and tools, plus CI/CD workflows that show developers how their tools and skills are holding up on every change.
-  - Built a topic classifier that auto-labels production traces into product categories, and analysis views that show agent owners where their agent does badly.
-  - Built an inbox that proactively proposes fixes to agent owners. Its main job turns real production traces into new eval cases.
-  - Added ownership and write access control for AI traces, and redaction that strips free text from sensitive traces and fails closed.
+  - Lead development of HubSpot's in-house LLM evaluation and observability platform, now evaluating and monitoring hundreds of agents. Evals run from an agent's own codebase or from a UI I wrote most of, with any tool or external call mockable.
+  - Designed eval sweeps: teams define a task and an agent, then test models, configurations, reasoning levels, and prompt variants in one run. Results plot a Pareto frontier of quality against cost and latency, so teams can see which model or prompt actually wins.
+  - Shipped skill evals, grading, and linting for agent skills and tools, wired into CI/CD to check every change.
+  - Created a topic classifier that sorts production traces by product area, with views showing where each agent struggles.
+  - Launched an inbox that proactively proposes fixes to agent owners, mostly by turning real production traces into new eval cases.
+  - Scaled the trace pipeline underneath to hundreds of millions of traces a day with 90-day retention, covering storage, distributed tracing, and export. Also own trace access control and sensitive-data redaction.
 ]
 
 #role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – Jul 2026")
 #items[
-  - Helped design and ship company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka consumers, and SQS queues. It became the data the eval platform runs on.
-  - Built the first-generation prompt tooling: A/B testing with p-value analysis, prompt replay, automated prompt tuning, and a UI-driven eval engine. Also a retention system that purged 900GB+ of stored generations.
+  - Helped design company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka, and SQS.
+  - Wrote first-gen prompt tooling: A/B tests with p-values, prompt replay, automated prompt tuning, and a UI eval engine.
 ]
 
 #role("Senior Software Engineer, Calling", "Aug 2023 – Dec 2024")
 #items[
-  - Cut a 150GB MySQL audit table by 90%, ending about 6 Vitess incidents a year.
-  - Built a rate-limited leasing service for shared test phone numbers. Test runs went up 12x and test costs dropped 50%.
+  - Stabilized a critical calling database with recurring outages: cut its 550GB audit table by 90% and ended about 6 incidents a year.
+  - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up 12x and test costs dropped 50%.
   - Owned backend design for call holds, transfers, and coaching.
   - Fed live call transcripts and customer runbooks into RAG for real-time call suggestions.
 ]
