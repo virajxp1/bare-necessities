@@ -3,7 +3,7 @@ tone: current
 label: 2026–27
 eyebrow: Interim manager
 title: Interim Engineering Manager, AI Platform
-order: 6
+order: 7
 ---
 
 A temporary detour into management, running alongside the platform role.
