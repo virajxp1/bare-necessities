@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Builds out/<name>.pdf (+ PNG preview) from <name>.typ using the RenderCV venv's Typst and bundled fonts.
-# Usage: ./build.sh [resume|modern]   (default: resume)
+# Usage: ./build.sh [name]   (default: resume)
 set -euo pipefail
 cd "$(dirname "$0")"
 SRC=${1:-resume}
