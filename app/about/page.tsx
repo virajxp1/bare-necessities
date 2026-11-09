@@ -40,7 +40,7 @@ export default function AboutPage() {
             <dl className="li-pagehead__meta">
               <div>
                 <dt>Current lane</dt>
-                <dd>AI platform / interim EM</dd>
+                <dd>Agent quality / interim EM</dd>
               </div>
               <div>
                 <dt>Base</dt>
