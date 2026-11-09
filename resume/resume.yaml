@@ -17,7 +17,7 @@ cv:
       username: virajxp1
   sections:
     summary:
-      - "Backend engineer, four years at HubSpot. I spent the first two on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day) and the last two building the AI platform that every HubSpot AI feature is now built, evaluated, traced, and monitored on. Currently also interim manager for a team of seven."
+      - "Backend engineer, four years at HubSpot. I spent the first two on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day) and the last two building HubSpot's in-house LLM evaluation and observability platform, which every HubSpot AI feature now runs on. Currently also interim manager for a team of seven."
     experience:
       - company: HubSpot
         position: Interim Engineering Manager, AI Platform
@@ -33,12 +33,13 @@ cv:
         location: Remote
         summary: "Promoted to Senior Software Engineer II in September 2026. Generative AI Platform team, then Agent Quality."
         highlights:
-          - "Built the company-wide agent evaluation platform. Teams compare agent variants across models, prompts, and reasoning levels, with cost and latency next to quality. It replaced the old eval system and teams now run evals without our help."
-          - "Built online scoring for live AI traffic with LLM-as-judge, agentic, and code-based (Java and Python) evaluators. Scores drive dashboards, regression alerts, and deploy gates in CI/CD."
-          - "Built an inbox that proactively proposes improvements to agent owners. The main job turns production traces into eval cases, filtered by an LLM reviewer."
-          - "Helped design and ship company-wide OpenTelemetry tracing for AI calls over 6 months. The hard part was carrying context across API requests, async jobs, Kafka consumers, and SQS queues. Then added ownership, access control, and sensitive-data redaction."
-          - "Built prompt A/B testing end to end, from p-value analysis on the backend to the UI for reading results. Also prompt replay, automated prompt tuning, and a retention job that purged 900GB+ of stored generations."
-          - "Shipped most of the new platform's front end: eval runs, comparisons, live progress, and in-browser scorer editing."
+          - "Built HubSpot's in-house LLM evaluation and observability platform as a replacement for Braintrust, which couldn't handle our requirements or our trace ingestion volume. Teams run it from code or from a UI I built most of."
+          - "Teams define a task and an agent, then kick off sweeps across models, configurations, and prompt variants in one go. Results plot a Pareto frontier of quality against cost and latency, so teams can see which model, config, or prompt tweak actually wins."
+          - "Built skill evals, skill grading, and skill linting for agent skills and tools, plus CI/CD workflows that show developers how their tools and skills are holding up on every change."
+          - "Built a topic classifier that auto-labels production traces into product categories, and analysis views that show agent owners where their agent does badly."
+          - "Built an inbox that proactively proposes fixes to agent owners. Its main job turns real production traces into new eval cases."
+          - "Helped design and ship company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka consumers, and SQS queues. This is the data the whole platform runs on."
+          - "Earlier: prompt A/B testing with p-value analysis, prompt replay, and automated prompt tuning."
       - company: HubSpot
         position: Senior Software Engineer, Calling
         start_date: 2023-08
@@ -68,7 +69,7 @@ cv:
       - label: Backend
         details: Distributed systems, Kafka, FastAPI, MySQL, Vitess, Postgres, AWS (SQS), Hadoop, REST APIs, CI/CD
       - label: AI
-        details: LLM evaluation, LLM-as-judge, agents, RAG, embeddings, prompt engineering, A/B testing, OpenTelemetry, LangGraph
+        details: LLM evaluation, eval sweeps, LLM-as-judge, agent skills, RAG, embeddings, A/B testing, OpenTelemetry, LangGraph
     education:
       - institution: The University of Texas at Austin
         area: Electrical and Computer Engineering
