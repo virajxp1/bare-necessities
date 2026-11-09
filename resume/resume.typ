@@ -94,4 +94,4 @@
 ]
 
 = Education
-#resume-entry(title: "The University of Texas at Austin", location: "Austin, TX", date: "Aug 2018 – May 2022", description: "B.S. Electrical and Computer Engineering, GPA 3.8. Captain, Texas Raas (2nd nationally, 2019)")
+#resume-entry(title: "The University of Texas at Austin", location: "Austin, TX", date: "Aug 2018 – May 2022", description: "B.S. Electrical and Computer Engineering, GPA 3.8. Captain, Texas Raas (1st nationally 2022, 2nd 2019)")
