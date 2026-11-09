@@ -39,7 +39,6 @@ cv:
           - "Helped design and ship company-wide OpenTelemetry tracing for AI calls over 6 months. The hard part was carrying context across API requests, async jobs, Kafka consumers, and SQS queues. Then added ownership, access control, and sensitive-data redaction."
           - "Built prompt A/B testing end to end, from p-value analysis on the backend to the UI for reading results. Also prompt replay, automated prompt tuning, and a retention job that purged 900GB+ of stored generations."
           - "Shipped most of the new platform's front end: eval runs, comparisons, live progress, and in-browser scorer editing."
-          - "Run a daily error-triage agent over our 6 services. Best catch: a multi-day crash loop caused by one poison message."
       - company: HubSpot
         position: Senior Software Engineer, Calling
         start_date: 2023-08
