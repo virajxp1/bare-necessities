@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/content/lib";
 
 export const metadata: Metadata = {
-  title: "Blog — bare-necessities.studio",
+  title: "Blog · bare-necessities.studio",
   description: "Notes on what I'm building and learning.",
   alternates: {
     canonical: "/blog/",
@@ -93,7 +93,7 @@ export default function BlogIndex() {
         <section className="li-shell li-page-section">
           <div className="li-section__head li-section__head--flush">
             <div>
-              <span className="li-section__num">§ 02 — Filed entries</span>
+              <span className="li-section__num">§ 02 · Filed entries</span>
               <h2 className="li-section__title">
                 Recent <em>writing</em>
               </h2>

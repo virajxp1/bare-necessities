@@ -7,8 +7,8 @@ tags:
   - productivity
 readTime: 5 min
 date: November 2026
-order: 3
-excerpt: How we built a custom planning app for our budget, guests, and seating — and made every painful decision as easy as telling an AI agent what to change.
+order: 1
+excerpt: How we built a custom planning app for our budget, guests, and seating, and made every painful decision as easy as telling an AI agent what to change.
 ---
 
 Planning a five-day wedding weekend means an overwhelming amount of logistics:
@@ -37,7 +37,7 @@ get messy fast. Every expense has multiple details to track:
 
 The crucial detail was separating "who paid" from "who owes." Once those lived
 in different fields instead of being blurred together, everyone had complete
-clarity on the numbers from day one — even as thousands of dollars moved
+clarity on the numbers from day one, even as thousands of dollars moved
 around.
 
 **Key takeaway:** AI works best when you hand it one specific, well-defined
@@ -52,7 +52,7 @@ linking to each other, all slightly out of sync.
 
 Instead, we moved everything into one database with a simple rule: the app is
 the only official source of truth. The design that made everything else work
-was this — **everything we knew about a person lived in one record.** Their
+was this: **everything we knew about a person lived in one record.** Their
 family, which events their RSVP covered, where they're seated, which photo
 group they're in, when they arrive and leave, whether they need an airport
 pickup, which welcome bag is theirs. One guest, one record, one place to look.
@@ -69,14 +69,14 @@ well-structured place, you can just *talk* to the app through its built-in AI
 assistant:
 
 - **Ask instead of hunt.** "When is my aunt flying in?" gets answered
-  instantly — versus trying to remember which of twenty spreadsheets holds the
+  instantly, versus trying to remember which of twenty spreadsheets holds the
   itinerary, and whether it's current.
 - **Let it flag gaps.** The assistant could tell us things we hadn't thought
   to ask: "your aunt is missing an itinerary," or "these guests don't have a
   table yet." Catching those in September beat discovering them the night
   before.
 - **Make broad strokes.** "We're going to break up this table and spread
-  everyone across three others" — the kind of reshuffle that would normally be
+  everyone across three others": the kind of reshuffle that would normally be
   an hour of painstaking spreadsheet surgery, cross-referencing five tabs,
   happened in one sentence plus a quick review.
 - **Absorb last-minute chaos.** When an RSVP flipped a week out, one change
@@ -107,7 +107,7 @@ As the date got closer, we added the assistant for making changes too:
 "move these three families to table 7 and update the photo groups."
 
 We designed it so **the AI could never edit anything directly.** Every request
-produced a proposed plan — a clear before-and-after summary of every change it
+produced a proposed plan: a clear before-and-after summary of every change it
 would make. I reviewed the summary, clicked **Apply** if it looked right, or
 discarded it if something was off.
 
@@ -122,7 +122,7 @@ If you're planning a wedding, a major move, or any large event:
 1. **Replace your most annoying spreadsheet first.** The file you dread
    updating is the best candidate for automation.
 2. **Structure data around people, not topics.** One complete record per
-   guest — not twenty linked spreadsheets — is what makes every other step
+   guest, not twenty linked spreadsheets, is what makes every other step
    possible.
 3. **Ask in plain language, and let the AI flag what you forgot to ask.**
    Answering questions is useful; surfacing gaps proactively is better.
@@ -135,5 +135,5 @@ If you're planning a wedding, a major move, or any large event:
    and personal detail stayed entirely ours.
 
 What I remember most isn't the software. It's that when plans changed at the
-last minute — and they did, more than once — fixing them took a sentence
+last minute (and they did, more than once), fixing them took a sentence
 instead of an evening.

@@ -3,7 +3,7 @@ import { Timeline } from "@/components/timeline";
 import { getTimeline } from "@/content/lib";
 
 export const metadata: Metadata = {
-  title: "About — bare-necessities.studio",
+  title: "About · bare-necessities.studio",
   description: "A short bio and a timeline of chapters so far.",
   alternates: {
     canonical: "/about/",
@@ -32,13 +32,15 @@ export default function AboutPage() {
           <aside className="li-pagehead__aside">
             <p>
               Career-wise I’ve moved from distributed systems into AI platform
-              work. Outside of code, beaches, mountains, music, coffee, and the
-              people around the thing matter more than the thing itself.
+              work: agent evaluation, tracing, and observability, plus a
+              temporary stint as interim engineering manager. Outside of code,
+              beaches, mountains, music, coffee, and the people around the
+              thing matter more than the thing itself.
             </p>
             <dl className="li-pagehead__meta">
               <div>
                 <dt>Current lane</dt>
-                <dd>Gen AI platform</dd>
+                <dd>AI platform / interim EM</dd>
               </div>
               <div>
                 <dt>Base</dt>
@@ -96,7 +98,7 @@ export default function AboutPage() {
           <span className="li-eyebrow-dot" style={{ color: "var(--lime)" }}>
             Personal rule
           </span>
-          <span>—</span>
+          <span>·</span>
           <span>§ 01</span>
         </div>
         <p className="li-quote__text">
@@ -108,7 +110,7 @@ export default function AboutPage() {
       <section className="li-shell li-page-section">
         <div className="li-section__head li-section__head--flush">
           <div>
-            <span className="li-section__num">§ 02 — Chapters</span>
+            <span className="li-section__num">§ 02 · Chapters</span>
             <h2 className="li-section__title">
               Where I&rsquo;ve been, where I <em>am</em>
             </h2>

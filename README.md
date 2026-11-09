@@ -8,10 +8,10 @@ Oslo is a text-first, editorial site that showcases selected work and long-form 
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) 16 (App Router) — React framework
-- [Tailwind CSS](https://tailwindcss.com/) v4 — Styling
-- [Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans) via `next/font/google` — body type
-- [Cabinet Grotesk](https://www.fontshare.com/fonts/cabinet-grotesk) via Fontshare — display type
+- [Next.js](https://nextjs.org/) 16 (App Router), React framework
+- [Tailwind CSS](https://tailwindcss.com/) v4, styling
+- [Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans) via `next/font/google`, body type
+- [Cabinet Grotesk](https://www.fontshare.com/fonts/cabinet-grotesk) via Fontshare, display type
 
 UI primitives are hand-built from Tailwind against the design tokens in `app/globals.css`. If additional primitives are needed later, prefer [shadcn/ui](https://ui.shadcn.com/) (open source, built on Radix).
 
@@ -32,10 +32,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Routes:
 
-- `/` — Home (hero, selected work, latest writing, about teaser)
-- `/work` — Curated project archive
-- `/blog` — Writing index
-- `/about` — About page
+- `/` : Home (hero, selected work, latest writing, about teaser)
+- `/work` : Curated project archive
+- `/blog` : Writing index
+- `/about` : About page
 
 ## Project Structure
 
@@ -58,12 +58,12 @@ Routes:
 
 See `docs/design/README.md` for the full system. Key documents:
 
-- `color-palette.md` — semantic color tokens
-- `typography.md` — type scale and font pairing
-- `layout-and-spacing.md` — containers and rhythm
-- `components.md` — component inventory
-- `page-blueprints.md` — per-page structure
-- `voice-and-content.md` — editorial voice and CTA labels
+- `color-palette.md` : semantic color tokens
+- `typography.md` : type scale and font pairing
+- `layout-and-spacing.md` : containers and rhythm
+- `components.md` : component inventory
+- `page-blueprints.md` : per-page structure
+- `voice-and-content.md` : editorial voice and CTA labels
 
 ## Scripts
 

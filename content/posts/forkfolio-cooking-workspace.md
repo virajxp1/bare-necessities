@@ -5,7 +5,7 @@ tags:
   - forkfolio
 readTime: 6 min
 date: April 2026
-order: 1
+order: 3
 excerpt: How I used LLMs, semantic search, and a modern full-stack setup to turn scattered recipe ideas into structured, reusable data.
 ---
 

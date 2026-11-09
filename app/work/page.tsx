@@ -5,7 +5,7 @@ import { getAllProjects, getProject } from "@/content/lib";
 import { getProjectStatus, splitTitle } from "@/components/living-index/page-utils";
 
 export const metadata: Metadata = {
-  title: "Work — bare-necessities.studio",
+  title: "Work · bare-necessities.studio",
   description: "Selected projects, each with a short write-up and links to the live site or source.",
   alternates: {
     canonical: "/work/",
@@ -105,7 +105,7 @@ export default function WorkPage() {
       <section className="li-shell li-page-section">
         <div className="li-section__head li-section__head--flush">
           <div>
-            <span className="li-section__num">§ 01 — Project archive</span>
+            <span className="li-section__num">§ 01 · Project archive</span>
             <h2 className="li-section__title">
               More recent <em>builds</em>
             </h2>

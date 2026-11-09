@@ -1,7 +1,7 @@
 ---
 title: Auto Browse
 year: "2026"
-order: 2
+order: 3
 summary: A constrained browser agent that uses Playwright, LangGraph, and an LLM planner to complete discrete web tasks step by step.
 tags:
   - Python

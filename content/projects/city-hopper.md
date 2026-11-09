@@ -1,7 +1,7 @@
 ---
 title: City Hopper
 year: "2021"
-order: 6
+order: 8
 summary: A web-scraping project for finding cheaper multi-city travel paths while balancing route distance and trip cost.
 tags:
   - Python

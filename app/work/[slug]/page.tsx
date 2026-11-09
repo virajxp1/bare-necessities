@@ -19,11 +19,11 @@ export async function generateMetadata({
   const project = getProject(slug);
 
   if (!project) {
-    return { title: "Project not found — bare-necessities.studio" };
+    return { title: "Project not found · bare-necessities.studio" };
   }
 
   return {
-    title: `${project.title} — bare-necessities.studio`,
+    title: `${project.title} · bare-necessities.studio`,
     description: project.summary,
     alternates: {
       canonical: `/work/${slug}/`,
