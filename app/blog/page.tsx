@@ -33,24 +33,15 @@ export default function BlogIndex() {
 
             <p className="li-pagehead__lede">
               Short essays on systems in progress: what worked, what broke, and
-              which tradeoffs were worth preserving after the fact.
+              what I&rsquo;d do differently next time.
             </p>
           </div>
 
           <aside className="li-pagehead__aside">
-            <p>
-              The journal is intentionally sparse. I only publish something here
-              when there is a decision, failure, or pattern that will still be
-              useful later.
-            </p>
             <dl className="li-pagehead__meta">
               <div>
                 <dt>Latest filing</dt>
                 <dd>{featured?.date ?? "Soon"}</dd>
-              </div>
-              <div>
-                <dt>Default mode</dt>
-                <dd>Case study</dd>
               </div>
             </dl>
           </aside>

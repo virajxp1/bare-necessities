@@ -1,52 +1,18 @@
 import Link from "next/link";
-import { getAllPosts, getAllProjects, type ProjectMeta } from "@/content/lib";
+import { getAllPosts, getAllProjects } from "@/content/lib";
+import { getProjectStatus, splitTitle } from "@/components/living-index/page-utils";
 import { NowPanel } from "@/components/living-index/hero-effects";
 
-const TICKER_ITEMS = [
-  "Tiffin",
-  "ForkFolio",
-  "Auto Browse",
-  "Called It",
-  "Journal notes",
-  "Open to collaboration",
-  "Source available on GitHub",
-];
-
-const STATUS_BY_SLUG: Record<string, { label: string; cls: string }> = {
-  tiffin: { label: "In flight", cls: "li-status--wip" },
-  forkfolio: { label: "Live", cls: "li-status--live" },
-  "auto-browse": { label: "Live", cls: "li-status--live" },
-  "called-it": { label: "Live", cls: "li-status--live" },
-};
-
-function splitTitle(t: string): [string, string] {
-  // Split a project name into a "plain head" + an "italic tail" for the
-  // mixed-roman/italic display. Falls back to a clean break if there's no
-  // good seam.
-  const trimmed = t.trim();
-  const m = trimmed.match(/^(\w+?)([A-Z]\w*)$/); // CamelCase like ForkFolio
-  if (m) return [m[1], m[2]];
-  const space = trimmed.lastIndexOf(" ");
-  if (space > 0) return [trimmed.slice(0, space + 1), trimmed.slice(space + 1)];
-  // single word → split roughly half-way
-  const mid = Math.ceil(trimmed.length / 2);
-  return [trimmed.slice(0, mid), trimmed.slice(mid)];
-}
-
-function projectHref(slug: string) {
-  return `/work/${slug}`;
-}
-
-function buildIndexedProjects(projects: ProjectMeta[]) {
-  return projects.slice(0, 3).map((p, i) => ({
+function buildIndexedProjects() {
+  return getAllProjects().slice(0, 3).map((p, i) => ({
     ...p,
     index: String(i + 1).padStart(2, "0"),
-    status: STATUS_BY_SLUG[p.slug] ?? { label: "Live", cls: "li-status--live" },
+    status: getProjectStatus(p),
   }));
 }
 
 export default function Home() {
-  const projects = buildIndexedProjects(getAllProjects());
+  const projects = buildIndexedProjects();
   const posts = getAllPosts().slice(0, 4);
 
   return (
@@ -56,7 +22,6 @@ export default function Home() {
         <div>
           <div className="li-hero__eyebrow">
             <span className="li-pill li-pill--lime">Portfolio · 2026</span>
-            <span className="li-mono-eyebrow li-eyebrow-dot">Texas</span>
             <span className="li-stamp">Open to chat</span>
           </div>
 
@@ -78,8 +43,8 @@ export default function Home() {
           </h1>
 
           <p className="li-hero__sub">
-            Engineer in Texas. Full-stack, most fluent in <em>Java</em> —
-            plus Python and tiny LLM-flavored pipelines.
+            Engineer in Texas. Full-stack: mostly <em>Java</em>, plus Python
+            and small LLM side projects.
           </p>
 
           <div className="li-hero__cta">
@@ -110,38 +75,11 @@ export default function Home() {
               height={800}
               loading="eager"
             />
-            <figcaption>Hello from Texas.</figcaption>
+            <figcaption>Usually behind the camera.</figcaption>
           </figure>
           <NowPanel />
-          <div className="li-quick-card" aria-label="Site context">
-            <dl className="li-quick-card__list">
-              <div>
-                <dt>Focused system</dt>
-                <dd>{projects[0]?.title ?? "Work archive"}</dd>
-              </div>
-              <div>
-                <dt>Latest note</dt>
-                <dd>{posts[0]?.date ?? "Journal"}</dd>
-              </div>
-              <div>
-                <dt>Base</dt>
-                <dd>Texas</dd>
-              </div>
-            </dl>
-          </div>
         </aside>
       </section>
-
-      {/* ── TICKER ── */}
-      <div className="li-ticker" aria-hidden>
-        <div className="li-ticker__track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} className="li-ticker__item">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* ── SELECTED WORK ── */}
       <section className="li-section">
@@ -168,7 +106,7 @@ export default function Home() {
             return (
               <Link
                 key={project.slug}
-                href={projectHref(project.slug)}
+                href={`/work/${project.slug}`}
                 className={`li-work-card${isFeature ? " li-work-card--feature" : ""}`}
               >
                 <div className="li-work-card__top">
@@ -185,30 +123,6 @@ export default function Home() {
                   <em>{tail}</em>
                 </h3>
                 <p className="li-work-card__desc">{project.summary}</p>
-
-                {isFeature ? (
-                  <div className="li-work-card__preview">
-                    <div>
-                      <span className="c">{"// orders.ts: atomic inventory"}</span>
-                    </div>
-                    <div>
-                      <span className="k">export async</span>{" "}
-                      <span className="k">function</span>{" "}
-                      <span className="n">acceptRequest</span>(req
-                      <span className="c">:</span>{" "}
-                      <span className="k">Request</span>)
-                    </div>
-                    <div>
-                      {"  → "}
-                      <span className="s">
-                        {"{ reserved + sold <= quantity }"}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="c">{"// accept → allocate → pickup code → review"}</span>
-                    </div>
-                  </div>
-                ) : null}
 
                 <div className="li-work-card__stack">
                   {project.tags.slice(0, 5).map((tag) => (
@@ -285,14 +199,14 @@ export default function Home() {
           </div>
         ) : (
           <p style={{ color: "var(--ink-3)", fontFamily: "var(--mono)", fontSize: 13 }}>
-            {"// queued: next post lands when there&apos;s a tradeoff worth keeping"}
+            The journal is quiet right now.
           </p>
         )}
       </section>
 
       {/* ── FOOT ── */}
       <footer className="li-foot">
-        <span>© 2026 · Viraj Parikh · Texas</span>
+        <span>© 2026 · Viraj Parikh</span>
         <span className="li-foot__links">
           <a href="https://github.com/virajxp1" target="_blank" rel="noopener noreferrer">
             GitHub ↗

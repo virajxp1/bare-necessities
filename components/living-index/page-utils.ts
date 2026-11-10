@@ -1,7 +1,8 @@
 import type { ProjectMeta } from "@/content/lib";
 
 const STATUS_BY_SLUG: Record<string, { label: string; cls: string }> = {
-  forkfolio: { label: "In flight", cls: "li-status--wip" },
+  tiffin: { label: "In flight", cls: "li-status--wip" },
+  forkfolio: { label: "Live", cls: "li-status--live" },
   "auto-browse": { label: "Live", cls: "li-status--live" },
   "called-it": { label: "Live", cls: "li-status--live" },
 };

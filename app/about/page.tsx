@@ -22,7 +22,6 @@ export default function AboutPage() {
             <div className="li-pagehead__eyebrow">
               <span className="li-pill">Archive 03</span>
               <span className="li-mono-eyebrow">About</span>
-              <span className="li-mono-eyebrow li-eyebrow-dot">Texas</span>
             </div>
 
             <h1 className="li-pagehead__title">
@@ -34,9 +33,7 @@ export default function AboutPage() {
             <p>
               Career-wise I’ve moved from distributed systems into AI platform
               work: agent evaluation, tracing, and observability, plus a
-              temporary stint as interim engineering manager. Outside of code,
-              beaches, mountains, music, coffee, and the people around the
-              thing matter more than the thing itself.
+              temporary stint as interim engineering manager.
             </p>
             <dl className="li-pagehead__meta">
               <div>
@@ -63,8 +60,7 @@ export default function AboutPage() {
 
             <p>
               Family dinners, long drives with no real plan, dance and music
-              that remind me where I come from. The people around the thing
-              usually matter more than the thing itself.
+              that remind me where I come from.
             </p>
 
             <div className="li-about-actions">
