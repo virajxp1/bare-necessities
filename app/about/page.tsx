@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Timeline } from "@/components/timeline";
-import { DownloadResume } from "@/components/download-resume";
+import { ResumeLink } from "@/components/resume-link";
 import { getTimeline } from "@/content/lib";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function AboutPage() {
   const chapters = getTimeline();
 
   return (
-    <div className="li-root li-page">
+    <div className="li-root li-page li-page--wide">
       <section className="li-shell li-pagehead">
         <div className="li-pagehead__grid">
           <div>
@@ -66,6 +66,26 @@ export default function AboutPage() {
               that remind me where I come from. The people around the thing
               usually matter more than the thing itself.
             </p>
+
+            <div className="li-about-actions">
+              <a
+                href="https://github.com/virajxp1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="li-btn"
+              >
+                GitHub <span className="li-arrow">↗</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/vhparikh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="li-btn"
+              >
+                LinkedIn <span className="li-arrow">↗</span>
+              </a>
+              <ResumeLink />
+            </div>
           </div>
 
           <figure className="li-about-photo">
@@ -79,31 +99,6 @@ export default function AboutPage() {
             />
             <figcaption>The classic car is borrowed; the suit is not.</figcaption>
           </figure>
-
-          <aside className="li-sidecard">
-            <div className="li-sidecard__section">
-              <span className="li-sidecard__label">Find me on</span>
-              <div className="li-sidecard__actions">
-                <DownloadResume />
-                <a
-                  href="https://github.com/virajxp1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="li-btn li-btn--primary"
-                >
-                  GitHub <span className="li-arrow">↗</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/vhparikh/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="li-btn"
-                >
-                  LinkedIn <span className="li-arrow">↗</span>
-                </a>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
 
