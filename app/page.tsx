@@ -101,6 +101,17 @@ export default function Home() {
         </div>
 
         <aside className="li-hero__aside">
+          <figure className="li-about-photo li-hero__portrait">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/viraj-portrait.jpg"
+              alt="Viraj Parikh in a suit, leaning against a classic car"
+              width={800}
+              height={800}
+              loading="eager"
+            />
+            <figcaption>Hello from Texas.</figcaption>
+          </figure>
           <NowPanel />
           <div className="li-quick-card" aria-label="Site context">
             <dl className="li-quick-card__list">

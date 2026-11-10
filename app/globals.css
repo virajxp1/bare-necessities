@@ -466,6 +466,9 @@ hr {
   flex-direction: column;
   gap: 16px;
 }
+.li-hero__portrait {
+  max-width: 220px;
+}
 .li-hero__eyebrow {
   display: flex;
   flex-wrap: wrap;
