@@ -13,7 +13,7 @@
     homepage: "https://bare-necessities.studio",
     github: "virajxp1",
     linkedin: "vhparikh",
-    positions: ("Senior Software Engineer", "AI Platform", "Texas (Remote)"),
+    positions: ("Senior Software Engineer II", "AI Platform", "Texas (Remote)"),
   ),
   profile-picture: none,
   show-footer: false,
@@ -43,55 +43,57 @@
 
 #resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – present", description: "Senior Software Engineer II, Agent Quality")
 #items[
-  - Lead development of HubSpot's in-house LLM evaluation platform, used by 54 teams to run evals on 84 components, including the company's highest-traffic agents. Evals run from code or a UI I wrote most of, with any tool or external call mockable.
-  - Designed eval sweeps: teams define a task and an agent, then test models, configurations, reasoning levels, and prompt variants in one run. Results plot a Pareto frontier of quality against cost and latency, so teams can see which model or prompt actually wins.
-  - Made quality scoring on by default: a baseline LLM judge covers 5,200+ components (44% of all registered) with no setup. Live scoring produces 315K+ scores a day from 890 registered judges, with alerts on step-function drops.
-  - Shipped skill evals, grading, and linting, plus CI/CD eval gates that stop bad builds from shipping on 16 high-traffic agents.
-  - Created a topic classifier that sorts production traces by product area, with views showing where each agent struggles.
-  - Added per-conversation cost analysis that finds where prompt caching breaks and prices what each break costs.
-  - Launched an inbox that proactively proposes fixes to agent owners, mostly by turning real production traces into new eval cases.
+  - Brought HubSpot's AI quality tooling from single-shot prompts into the agentic era, replacing the first-generation platform.
+  - Built a harness-agnostic agent evaluation platform with decoupled datasets and tool mocking, used by *54 teams* on *84 components*.
+  - Gave teams model and prompt sweeps over their own test cases, generating *Pareto frontiers* of quality vs. cost and latency.
+  - Launched LLM-as-a-judge scoring as a product, sampling production traces with Python scorers and classifiers: *889 judges*, *315K scores a day*, and a baseline judge that gives *5,200+ components (44%)* a quality signal by default.
+  - Shipped skill evals, grading, and linting with CI/CD gates that block bad builds on *16 agents*, including the 3 highest-traffic.
+  - Used fast, low-cost (System 1) models to bootstrap topic classification: sample an agent's traces, derive its task categories, then label all incoming traffic. Topics show eval coverage gaps and break down feedback, tool errors, and excessive turns.
+  - Launched an inbox that flags issues for agent owners, proposes fixes, and turns real production traces into new eval cases.
 ]
 
 #role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – Jul 2026")
 #items[
-  - Helped design company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka, and SQS.
-  - Scaled tracing to every LLM call, unsampled: 200M traces a day from 10,000 components owned by 500+ teams, kept for 90 days with access control and sensitive-data redaction.
-  - Wrote first-gen prompt tooling: A/B tests with p-values, prompt replay, automated prompt tuning, and a UI eval engine.
+  - Co-led company-wide OpenTelemetry tracing (6 months), propagating context across APIs, async jobs, Kafka, and SQS.
+  - Scaled tracing to every LLM call, unsampled: *200M traces a day* from 10,000 components and *500+ teams*, kept 90 days.
+  - Built trace ownership, access control, and redaction. Ownership alerts cut unowned components from 34 to near zero.
+  - Built first-gen prompt tooling: A/B testing, prompt replay, automated prompt tuning, and a UI to test prompts across models.
 ]
 
 #role("Senior Software Engineer, Calling", "Aug 2023 – Dec 2024")
 #items[
-  - Stabilized a critical calling database with recurring outages: cut its 550GB audit table by 90% and ended about 6 incidents a year.
-  - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up 12x and test costs dropped 50%.
+  - Stabilized a critical calling database with recurring outages (about 6 a year) by cutting its 550GB audit table by *90%*.
+  - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up *12x* and test costs dropped *50%*.
   - Owned backend design for call holds, transfers, and coaching.
-  - Moved call recordings onto in-house storage with a 1-year retention policy, saving \$100K+ a year.
+  - Moved call recordings onto in-house storage with a 1-year retention policy, saving *\$100K+ a year*.
   - Fed live call transcripts and customer runbooks into RAG for real-time call suggestions.
 ]
 
 #role("Software Engineer, Calling", "Aug 2022 – Aug 2023")
 #items[
-  - Migrated Twilio webhook handling (1M+ requests a day) and led a vendor-agnostic conference calling platform on Kafka and MySQL.
+  - Migrated Twilio webhook handling (*1M+ requests a day*) and led a vendor-agnostic conference calling platform on Kafka and MySQL.
 ]
 
 = Projects
 #items[
   - *ForkFolio* (#link("https://github.com/virajxp1/forkfolio")[github.com/virajxp1/forkfolio]): recipe app that turns any URL or pasted text into a structured recipe. An LLM pipeline cleans, extracts, dedupes, and embeds each one for semantic search. Next.js, FastAPI, Postgres with pgvector, Braintrust.
   - *Auto Browse* (#link("https://github.com/virajxp1/auto-browse")[github.com/virajxp1/auto-browse]): Python browser agent where a LangGraph planner drives Playwright.
-  - *Tiffin* (in progress): marketplace for homemade food with timed listings, seller acceptance, atomic inventory, and pickup codes. React Native (Expo), Supabase, TypeScript.
+  - *Tiffin* (in progress): homemade-food marketplace with timed listings, atomic inventory, and pickup codes. React Native, Supabase.
 ]
 
 = Leadership
 #resume-entry(title: "Raas All-Stars", location: "National nonprofit", date: "2023 – 2025", description: "Executive Board Member")
 #items[
-  - Help run the 501(c)(3) behind the national collegiate Raas and Garba dance circuit and its championship. Liaison to college teams.
+  - Helped run the 501(c)(3) behind the national collegiate Raas and Garba dance circuit and its championship. Liaison to college teams.
 ]
 
 = Skills
 #items[
-  #grid(columns: (5.5em, 1fr), row-gutter: 0.6em,
-    [*Languages*], [Java, Python, TypeScript, SQL, React, Next.js, React Native],
-    [*Backend*], [Distributed systems, Kafka, MySQL, Vitess, Postgres, AWS (SQS), Hadoop, FastAPI, REST APIs, CI/CD],
-    [*AI*], [LLM evaluation, eval sweeps, LLM-as-judge, agent skills, RAG, OpenTelemetry, Braintrust, LangGraph],
+  #grid(columns: (7.4em, 1fr), row-gutter: 0.6em,
+    [*Languages*], [Java, Python, TypeScript, SQL],
+    [*Frameworks*], [React, Next.js, React Native, FastAPI, LangGraph, Playwright],
+    [*Infrastructure*], [Distributed systems, Kafka, AWS (SQS), MySQL, Vitess, PostgreSQL, Hadoop, OpenTelemetry, CI/CD],
+    [*AI / ML*], [LLM evaluation, LLM-as-a-judge, AI agents, RAG, vector search, prompt engineering, A/B testing, Braintrust],
   )
 ]
 
