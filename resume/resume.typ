@@ -44,34 +44,34 @@
 #resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – present", description: "Senior Software Engineer II, Agent Quality")
 #items[
   - Brought HubSpot's AI quality tooling from single-shot prompts into the agentic era, replacing the first-generation platform.
-  - Built a harness-agnostic agent evaluation platform with decoupled datasets and tool mocking, used by *54 teams* on *84 components*.
-  - Gave teams model and prompt sweeps over their own test cases, generating *Pareto frontiers* of quality vs. cost and latency.
-  - Launched LLM-as-a-judge scoring as a product, sampling production traces with Python scorers and classifiers: *889 judges*, *315K scores a day*, and a baseline judge that gives *5,200+ components (44%)* a quality signal by default.
-  - Shipped skill evals, grading, and linting with CI/CD gates that block bad builds on *16 agents*, including the 3 highest-traffic.
-  - Used fast, low-cost (System 1) models to bootstrap topic classification: sample an agent's traces, derive its task categories, then label all incoming traffic. Topics show eval coverage gaps and break down feedback, tool errors, and excessive turns.
+  - Built a harness-agnostic agent evaluation platform with decoupled datasets and tool mocking, used by 54 teams on 84 components.
+  - Gave teams model and prompt sweeps over their own test cases, generating Pareto frontiers of quality vs. cost and latency.
+  - Launched LLM-as-a-judge scoring as a product, sampling production traces with Python scorers and classifiers: 889 judges, 315K scores a day, and a baseline judge that gives 5,200+ components (44%) a quality signal by default.
+  - Shipped skill evals, grading, and linting with CI/CD gates that block bad builds on 16 agents, including the 3 highest-traffic.
+  - Used System 1 models (fast, low-cost LLMs) to bootstrap topic classification: sample an agent's traces, derive its task categories, then label all incoming traffic. Topics show eval coverage gaps and break down feedback, tool errors, and excessive turns.
   - Launched an inbox that flags issues for agent owners, proposes fixes, and turns real production traces into new eval cases.
 ]
 
 #role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – Jul 2026")
 #items[
   - Co-led company-wide OpenTelemetry tracing (6 months), propagating context across APIs, async jobs, Kafka, and SQS.
-  - Scaled tracing to every LLM call, unsampled: *200M traces a day* from 10,000 components and *500+ teams*, kept 90 days.
+  - Scaled tracing to every LLM call, unsampled: 200M traces a day from 10,000 components and 500+ teams, kept 90 days.
   - Built trace ownership, access control, and redaction. Ownership alerts cut unowned components from 34 to near zero.
   - Built first-gen prompt tooling: A/B testing, prompt replay, automated prompt tuning, and a UI to test prompts across models.
 ]
 
 #role("Senior Software Engineer, Calling", "Aug 2023 – Dec 2024")
 #items[
-  - Stabilized a critical calling database with recurring outages (about 6 a year) by cutting its 550GB audit table by *90%*.
-  - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up *12x* and test costs dropped *50%*.
+  - Stabilized a critical calling database with recurring outages (about 6 a year) by cutting its 550GB audit table by 90%.
+  - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up 12x and test costs dropped 50%.
   - Owned backend design for call holds, transfers, and coaching.
-  - Moved call recordings onto in-house storage with a 1-year retention policy, saving *\$100K+ a year*.
+  - Moved call recordings onto in-house storage with a 1-year retention policy, saving \$100K+ a year.
   - Fed live call transcripts and customer runbooks into RAG for real-time call suggestions.
 ]
 
 #role("Software Engineer, Calling", "Aug 2022 – Aug 2023")
 #items[
-  - Migrated Twilio webhook handling (*1M+ requests a day*) and led a vendor-agnostic conference calling platform on Kafka and MySQL.
+  - Migrated Twilio webhook handling (1M+ requests a day) and led a vendor-agnostic conference calling platform on Kafka and MySQL.
 ]
 
 = Projects
