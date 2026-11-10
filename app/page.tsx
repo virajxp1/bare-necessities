@@ -78,8 +78,8 @@ export default function Home() {
           </h1>
 
           <p className="li-hero__sub">
-            Engineer in Texas. Mostly full-stack: <em>Next.js</em>, Python,
-            and tiny LLM-flavored pipelines.
+            Engineer in Texas. Full-stack, most fluent in <em>Java</em> —
+            plus Python and tiny LLM-flavored pipelines.
           </p>
 
           <div className="li-hero__cta">
