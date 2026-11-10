@@ -50,12 +50,12 @@
   - Created a topic classifier that sorts production traces by product area, with views showing where each agent struggles.
   - Added per-conversation cost analysis that finds where prompt caching breaks and prices what each break costs.
   - Launched an inbox that proactively proposes fixes to agent owners, mostly by turning real production traces into new eval cases.
-  - Scaled the trace pipeline underneath to hundreds of millions of traces a day with 90-day retention, covering storage, distributed tracing, and export. Also own trace access control and sensitive-data redaction.
 ]
 
 #role("Senior Software Engineer, Generative AI Platform", "Jan 2025 – Jul 2026")
 #items[
   - Helped design company-wide OpenTelemetry tracing for AI calls, carrying context across API requests, async jobs, Kafka, and SQS.
+  - Scaled the trace pipeline to hundreds of millions of traces a day with 90-day retention, covering storage, distributed tracing, and export. Also added trace access control and sensitive-data redaction.
   - Wrote first-gen prompt tooling: A/B tests with p-values, prompt replay, automated prompt tuning, and a UI eval engine.
 ]
 
