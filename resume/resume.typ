@@ -41,7 +41,7 @@
 
 = Experience
 
-#resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – present", description: "Senior Software Engineer II, Agent Quality")
+#resume-entry(title: "HubSpot", location: "Cambridge, MA and Remote", date: "Aug 2026 – Present", description: "Senior Software Engineer II, Agent Quality")
 #items[
   - Brought HubSpot's AI quality tooling from single-shot prompts into the agentic era, replacing the first-generation platform.
   - Built a harness-agnostic agent evaluation platform with decoupled datasets and tool mocking, used by 54 teams on 84 components.
@@ -64,7 +64,7 @@
 #items[
   - Stabilized a critical calling database with recurring outages (about 6 a year) by cutting its 550GB audit table by 90%.
   - Designed a rate-limited leasing service for shared test phone numbers. Test runs went up 12x and test costs dropped 50%.
-  - Owned backend design for call holds, transfers, and coaching.
+  - Owned backend design for call holds, transfers, and coaching on live calls.
   - Moved call recordings onto in-house storage with a 1-year retention policy, saving \$100K+ a year.
   - Fed live call transcripts and customer runbooks into RAG for real-time call suggestions.
 ]
@@ -84,7 +84,7 @@
 = Leadership
 #resume-entry(title: "Raas All-Stars", location: "National nonprofit", date: "2023 – 2025", description: "Executive Board Member")
 #items[
-  - Helped run the 501(c)(3) behind the national collegiate Raas and Garba dance circuit and its championship. Liaison to college teams.
+  - Helped run the 501(c)(3) behind the national collegiate Raas and Garba dance circuit and its annual championship, serving as the board's liaison to competing college teams.
 ]
 
 = Skills

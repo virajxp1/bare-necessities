@@ -7,7 +7,7 @@
 | Source of truth (edit this) | `resume/resume.typ` |
 | Live PDF (rebuilt on every deploy) | https://bare-necessities.studio/resume.pdf |
 | Local build output | `resume/out/resume.pdf` (+ `resume/out/resume-1.png` preview) |
-| Download button | About page, "Résumé ↓" |
+| Résumé links | Nav tab + About page button, both open `/resume.pdf` |
 
 There is no `resume.yaml` anymore. It was an older RenderCV draft that nothing built from, and it was deleted in #21. Don't recreate it.
 
@@ -25,7 +25,7 @@ resume/build.sh            # writes resume/out/resume.pdf and resume/out/resume-
 
 1. `.github/workflows/deploy-pages.yml` installs `requirements.txt` and runs `resume/build.sh`.
 2. `npm run build` runs `scripts/sync-resume.mjs` first (`prebuild`), which copies the PDF to `public/resume.pdf`.
-3. `components/download-resume.tsx` renders the About page button, but only if that PDF exists.
+3. `components/resume-link.tsx` renders the About page button, but only if that PDF exists. The nav's Resume tab (in `components/site-nav.tsx`) links to the same hosted page.
 
 `resume/out/` and `public/resume.pdf` are generated and gitignored. Never commit them, and never edit them by hand.
 
