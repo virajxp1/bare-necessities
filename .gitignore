@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# resume build artifact synced in by scripts/sync-resume.mjs
+/public/resume.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

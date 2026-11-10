@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Timeline } from "@/components/timeline";
+import { DownloadResume } from "@/components/download-resume";
 import { getTimeline } from "@/content/lib";
 
 export const metadata: Metadata = {
@@ -71,6 +72,7 @@ export default function AboutPage() {
             <div className="li-sidecard__section">
               <span className="li-sidecard__label">Find me on</span>
               <div className="li-sidecard__actions">
+                <DownloadResume />
                 <a
                   href="https://github.com/virajxp1"
                   target="_blank"

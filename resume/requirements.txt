@@ -1,0 +1,3 @@
+# Resume build deps (resume/build.sh). Typst compiler + the open-source fonts it uses.
+typst==0.15.2
+rendercv-fonts==0.5.1
