@@ -36,7 +36,7 @@
 
 = Summary
 #items[
-  Backend engineer with four years at HubSpot. I started on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day) and moved to AI in 2025. Today I lead work on HubSpot's in-house LLM evaluation and observability platform: eval sweeps that chart quality against cost and latency, skill testing in CI/CD, and a tracing pipeline that takes in hundreds of millions of traces a day.
+  Backend engineer with four years at HubSpot. I started on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day), moved to AI in 2025 to build tracing that now takes in hundreds of millions of traces a day, and today drive Agent Quality: systems that proactively alert teams when quality slips and help their agents get substantially better at finishing customers' tasks.
 ]
 
 = Experience
