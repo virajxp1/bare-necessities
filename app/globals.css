@@ -1699,9 +1699,15 @@ hr {
 
 .li-about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(200px, 0.6fr) minmax(240px, 0.7fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.7fr);
+  gap: 40px;
   align-items: start;
+}
+.li-about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
 }
 .li-about-photo {
   margin: 0;
@@ -1737,6 +1743,9 @@ hr {
   font-size: clamp(1.25rem, 2vw, 1.6rem);
   line-height: 1.42;
   color: var(--ink);
+}
+.li-page--wide .li-shell {
+  max-width: 1440px;
 }
 .li-about-quote {
   margin-top: 52px;

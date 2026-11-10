@@ -8,6 +8,9 @@ const links = [
   { href: "/work", label: "Work" },
   { href: "/blog", label: "Journal" },
   { href: "/about", label: "About" },
+  // Hosted resume PDF served from /resume.pdf. A <Link> is used so the
+  // GitHub Pages basePath is applied automatically when it is configured.
+  { href: "/resume.pdf", label: "Resume" },
 ];
 
 export function SiteNav() {
@@ -48,14 +51,6 @@ export function SiteNav() {
               </Link>
             );
           })}
-
-          <a
-            href="https://github.com/virajxp1"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
         </div>
 
         <div className="li-nav__clock">Texas</div>
