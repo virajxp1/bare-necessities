@@ -68,6 +68,18 @@ export default function AboutPage() {
             </p>
           </div>
 
+          <figure className="li-about-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/viraj-portrait.jpg"
+              alt="Viraj Parikh in a suit, leaning against a classic car"
+              width={800}
+              height={800}
+              loading="eager"
+            />
+            <figcaption>The classic car is borrowed; the suit is not.</figcaption>
+          </figure>
+
           <aside className="li-sidecard">
             <div className="li-sidecard__section">
               <span className="li-sidecard__label">Find me on</span>

@@ -1696,9 +1696,28 @@ hr {
 
 .li-about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(200px, 0.6fr) minmax(240px, 0.7fr);
   gap: 32px;
   align-items: start;
+}
+.li-about-photo {
+  margin: 0;
+  align-self: start;
+}
+.li-about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.li-about-photo figcaption {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 .li-about-copy {
   display: flex;
