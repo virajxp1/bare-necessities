@@ -36,7 +36,7 @@
 
 = Summary
 #items[
-  Backend engineer with four years at HubSpot. I started on Calling infrastructure (Java, Kafka, MySQL, Twilio webhooks at 1M+ requests a day), moved to AI in 2025 to build tracing that now captures every LLM call at HubSpot, and today drive Agent Quality: systems that proactively alert teams when quality slips and help their agents get substantially better at finishing customers' tasks.
+  Backend engineer with 4+ years at HubSpot. I started on the customer-facing Calling backend in Java, Kafka, and MySQL with the Twilio integration at 1M+ requests a day, then moved to AI in 2025 to build the first generation evaluation platform and OpenTelemetry tracing. I now lead Agent Quality, building systems that catch quality slips early and help teams improve their agents.
 ]
 
 = Experience
