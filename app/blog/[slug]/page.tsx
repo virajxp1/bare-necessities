@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             <div className="li-sidecard__section">
               <span className="li-sidecard__label">Byline</span>
-              <p>Viraj Parikh · Texas</p>
+              <p>Viraj Parikh</p>
             </div>
           </aside>
         </div>

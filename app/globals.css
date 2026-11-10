@@ -1661,42 +1661,6 @@ hr {
   border-top: 1px solid var(--line);
 }
 
-.li-quick-card {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 20px 22px;
-  background: var(--paper-2);
-}
-.li-quick-card__list {
-  display: grid;
-  gap: 14px;
-  margin: 0;
-}
-.li-quick-card__list div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  border-bottom: 1px solid var(--line-soft);
-  padding-bottom: 12px;
-}
-.li-quick-card__list div:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-.li-quick-card__list dt {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.li-quick-card__list dd {
-  margin: 0;
-  text-align: right;
-  color: var(--ink);
-}
-
 .li-about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.7fr);
@@ -1905,14 +1869,6 @@ hr {
   .li-section__head {
     align-items: flex-start;
     flex-direction: column;
-  }
-  .li-quick-card__list div {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .li-quick-card__list dd {
-    text-align: left;
   }
   .li-feature-panel__eyebrow,
   .li-work-card__top {

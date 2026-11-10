@@ -22,11 +22,11 @@ function usePrefersReducedMotion() {
 
 const NOW_LINES: { text: string; cls?: string }[] = [
   { text: "$ whoami" },
-  { text: "viraj parikh · engineer in Texas", cls: "p" },
+  { text: "viraj parikh", cls: "p" },
   { text: "$ focus" },
   { text: "agent quality · eval & observability", cls: "p" },
-  { text: "$ archive" },
-  { text: "work notes live at bare-necessities.studio", cls: "c" },
+  { text: "$ before" },
+  { text: "distributed systems", cls: "c" },
 ];
 
 export function NowPanel() {
