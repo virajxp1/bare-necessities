@@ -33,8 +33,7 @@ export default function AboutPage() {
             <p>
               Career-wise I’ve moved from distributed systems into AI platform
               work: agent evaluation, tracing, and observability, plus a
-              temporary stint as interim engineering manager. Outside of code,
-              it’s beaches, mountains, music, and coffee.
+              temporary stint as interim engineering manager.
             </p>
             <dl className="li-pagehead__meta">
               <div>

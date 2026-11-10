@@ -1,15 +1,6 @@
 import Link from "next/link";
 import { getAllPosts, getAllProjects } from "@/content/lib";
 import { getProjectStatus, splitTitle } from "@/components/living-index/page-utils";
-import { NowPanel } from "@/components/living-index/hero-effects";
-
-const TICKER_ITEMS = [
-  "Tiffin",
-  "ForkFolio",
-  "Auto Browse",
-  "Called It",
-  "Journal notes",
-];
 
 function buildIndexedProjects() {
   return getAllProjects().slice(0, 3).map((p, i) => ({
@@ -51,8 +42,8 @@ export default function Home() {
           </h1>
 
           <p className="li-hero__sub">
-            Engineer in Texas. Full-stack, most fluent in <em>Java</em> —
-            plus Python and tiny LLM-flavored pipelines.
+            Engineer in Texas. Full-stack: mostly <em>Java</em>, plus Python
+            and small LLM side projects.
           </p>
 
           <div className="li-hero__cta">
@@ -85,20 +76,8 @@ export default function Home() {
             />
             <figcaption>Usually behind the camera.</figcaption>
           </figure>
-          <NowPanel />
         </aside>
       </section>
-
-      {/* ── TICKER ── */}
-      <div className="li-ticker" aria-hidden>
-        <div className="li-ticker__track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} className="li-ticker__item">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* ── SELECTED WORK ── */}
       <section className="li-section">
@@ -142,30 +121,6 @@ export default function Home() {
                   <em>{tail}</em>
                 </h3>
                 <p className="li-work-card__desc">{project.summary}</p>
-
-                {isFeature ? (
-                  <div className="li-work-card__preview">
-                    <div>
-                      <span className="c">{"// orders.ts: atomic inventory"}</span>
-                    </div>
-                    <div>
-                      <span className="k">export async</span>{" "}
-                      <span className="k">function</span>{" "}
-                      <span className="n">acceptRequest</span>(req
-                      <span className="c">:</span>{" "}
-                      <span className="k">Request</span>)
-                    </div>
-                    <div>
-                      {"  → "}
-                      <span className="s">
-                        {"{ reserved + sold <= quantity }"}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="c">{"// accept → allocate → pickup code → review"}</span>
-                    </div>
-                  </div>
-                ) : null}
 
                 <div className="li-work-card__stack">
                   {project.tags.slice(0, 5).map((tag) => (
@@ -242,7 +197,7 @@ export default function Home() {
           </div>
         ) : (
           <p style={{ color: "var(--ink-3)", fontFamily: "var(--mono)", fontSize: 13 }}>
-            Next post lands when there&apos;s a tradeoff worth keeping.
+            The journal is quiet right now.
           </p>
         )}
       </section>

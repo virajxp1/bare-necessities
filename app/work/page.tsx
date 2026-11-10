@@ -125,9 +125,8 @@ export default function WorkPage() {
       <section className="li-shell li-page-section li-page-section--closing">
         <div className="li-closing-note">
           <p>
-            The archive stays compact on purpose. If something is listed here,
-            there is a useful system behind it and at least one decision worth
-            writing down.
+            Every project listed here shipped. The write-ups focus on the
+            decisions behind them, so each one has something you can reuse.
           </p>
           <Link href="/about" className="li-backlink">
             Context around the work <span aria-hidden>→</span>
