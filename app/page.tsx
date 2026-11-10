@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllPosts, getAllProjects } from "@/content/lib";
 import { getProjectStatus, splitTitle } from "@/components/living-index/page-utils";
+import { NowPanel } from "@/components/living-index/hero-effects";
 
 function buildIndexedProjects() {
   return getAllProjects().slice(0, 3).map((p, i) => ({
@@ -76,6 +77,7 @@ export default function Home() {
             />
             <figcaption>Usually behind the camera.</figcaption>
           </figure>
+          <NowPanel />
         </aside>
       </section>
 
