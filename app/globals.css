@@ -71,6 +71,8 @@
 html {
   background: var(--color-bg);
   color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -342,6 +344,12 @@ hr {
   color: var(--ink);
   font-family: var(--sans);
   overflow-x: clip;
+}
+
+/* Kill the gray tap flash on touch devices; press states below replace it. */
+.li-root a,
+.li-root button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* element resets within the home page */
@@ -1743,13 +1751,36 @@ hr {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .li-nav { padding: 18px 28px; gap: 12px; flex-wrap: wrap; }
-  .li-hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 64px; }
-  .li-section { padding: 56px 28px 28px; }
+  .li-nav {
+    padding: 18px max(28px, env(safe-area-inset-right, 0px))
+      18px max(28px, env(safe-area-inset-left, 0px));
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .li-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px max(28px, env(safe-area-inset-right, 0px)) 64px
+      max(28px, env(safe-area-inset-left, 0px));
+  }
+  .li-section {
+    padding: 56px max(28px, env(safe-area-inset-right, 0px)) 28px
+      max(28px, env(safe-area-inset-left, 0px));
+  }
   .li-grid-work { grid-template-columns: 1fr; }
-  .li-quote { margin: 28px; padding: 40px 32px; }
-  .li-foot { padding: 56px 28px; }
-  .li-shell { padding: 0 28px; }
+  .li-quote {
+    margin: 28px max(28px, env(safe-area-inset-right, 0px)) 28px
+      max(28px, env(safe-area-inset-left, 0px));
+    padding: 40px 32px;
+  }
+  .li-foot {
+    padding: 56px max(28px, env(safe-area-inset-right, 0px)) calc(56px + env(safe-area-inset-bottom, 0px))
+      max(28px, env(safe-area-inset-left, 0px));
+  }
+  .li-shell {
+    padding: 0 max(28px, env(safe-area-inset-right, 0px)) 0
+      max(28px, env(safe-area-inset-left, 0px));
+  }
   .li-pagehead__grid,
   .li-feature-panel__grid,
   .li-feature-story__grid,
@@ -1769,29 +1800,49 @@ hr {
   }
 }
 @media (max-width: 640px) {
+  /* Nav collapses to two rows: brand + location clock, then the links. */
   .li-nav {
-    align-items: flex-start;
-    padding: 16px 20px;
+    align-items: center;
+    padding: 12px max(20px, env(safe-area-inset-right, 0px))
+      12px max(20px, env(safe-area-inset-left, 0px));
   }
-  .li-nav__links {
-    width: 100%;
-    order: 2;
-    gap: 10px 18px;
-    flex-wrap: wrap;
+  .li-nav__brand {
+    order: 1;
   }
   .li-nav__clock {
+    order: 2;
+    margin-left: auto;
+    gap: 6px;
+  }
+  .li-nav__links {
     order: 3;
     width: 100%;
+    justify-content: space-between;
+    gap: 0;
+    margin-top: 2px;
   }
   .li-hero {
-    padding: 40px 20px 56px;
+    padding: 40px max(20px, env(safe-area-inset-right, 0px)) 56px
+      max(20px, env(safe-area-inset-left, 0px));
+  }
+  .li-hero__cta {
+    /* buttons should sit comfortably under a thumb */
+    gap: 8px;
   }
   .li-section {
-    padding: 48px 20px 24px;
+    padding: 48px max(20px, env(safe-area-inset-right, 0px)) 24px
+      max(20px, env(safe-area-inset-left, 0px));
   }
   .li-section__head {
     align-items: flex-start;
     flex-direction: column;
+  }
+  /* standalone text links need a tap target, not just glyphs */
+  .li-section__head .li-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: -8px;
   }
   .li-feature-panel__eyebrow,
   .li-work-card__top {
@@ -1799,19 +1850,29 @@ hr {
     justify-content: flex-start;
   }
   .li-shell {
-    padding: 0 20px;
+    padding: 0 max(20px, env(safe-area-inset-right, 0px)) 0
+      max(20px, env(safe-area-inset-left, 0px));
   }
   .li-quote {
-    margin: 20px;
+    margin: 20px max(20px, env(safe-area-inset-right, 0px)) 20px
+      max(20px, env(safe-area-inset-left, 0px));
     padding: 32px 24px;
   }
   .li-foot {
     align-items: flex-start;
-    padding: 48px 20px;
+    padding: 48px max(20px, env(safe-area-inset-right, 0px))
+      calc(48px + env(safe-area-inset-bottom, 0px))
+      max(20px, env(safe-area-inset-left, 0px));
   }
   .li-foot__links {
     justify-content: flex-start;
-    gap: 12px 16px;
+    gap: 0 16px;
+    margin-top: -10px;
+  }
+  .li-foot__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
   .li-journal-item { grid-template-columns: 1fr; gap: 8px; }
   .li-pagehead {
@@ -1850,4 +1911,67 @@ hr {
   .li-prose pre code {
     white-space: inherit;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Touch devices — iOS/Android keep :hover latched after a tap,
+   which freezes row indents and card highlights. Reset the
+   hover-only styling and provide :active press feedback instead.
+   ───────────────────────────────────────────────────────────── */
+@media (hover: none) {
+  .li-nav__links a:hover { color: var(--ink-2); }
+  .li-nav__links a:hover::after { transform: scaleX(0); }
+  .li-btn:hover {
+    background: transparent;
+    border-color: var(--line);
+  }
+  .li-btn--primary:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .li-btn:hover .li-arrow { transform: none; }
+  .li-panel--ink .li-btn:hover {
+    background: transparent;
+    border-color: rgba(236, 228, 210, 0.18);
+  }
+  .li-panel--ink .li-btn--primary:hover {
+    background: var(--lime);
+    border-color: transparent;
+  }
+  .li-link:hover { color: var(--ink-2); }
+  .li-link:hover::after { transform: scaleX(0); }
+  .li-backlink:hover { color: var(--ember); }
+  .li-work-card:hover {
+    background: var(--paper-2);
+    border-color: var(--line);
+  }
+  .li-work-card--feature:hover {
+    background: var(--ink);
+    border-color: transparent;
+  }
+  .li-work-card:hover .li-barchart i { opacity: 0.85; }
+  .li-journal-item:hover,
+  .li-archive-row:hover,
+  .li-post-row:hover {
+    padding-left: 0;
+    background: transparent;
+  }
+  .li-feature-story:hover {
+    border-color: var(--line);
+    transform: none;
+  }
+  .li-work-card:hover .li-arrow,
+  .li-archive-row:hover .li-arrow,
+  .li-post-row:hover .li-arrow,
+  .li-feature-story:hover .li-arrow { transform: none; }
+
+  /* press feedback */
+  .li-btn:active { transform: scale(0.97); }
+  .li-work-card:active { border-color: var(--ink-2); }
+  .li-work-card--feature:active { border-color: var(--lime); }
+  .li-journal-item:active,
+  .li-archive-row:active,
+  .li-post-row:active { background: var(--paper-2); }
+  .li-feature-story:active { border-color: var(--ink-2); }
 }
