@@ -81,38 +81,40 @@ export default async function WorkProjectPage({
               <span className="li-sidecard__label">Stack</span>
               <p>{project.tags.join(" · ")}</p>
             </div>
-            <div className="li-sidecard__section">
-              <span className="li-sidecard__label">Links</span>
-              <div className="li-sidecard__actions">
-                {project.projectUrl ? (
-                  <a
-                    href={project.projectUrl}
-                    target={project.projectUrl.startsWith("/") ? undefined : "_blank"}
-                    rel={
-                      project.projectUrl.startsWith("/")
-                        ? undefined
-                        : "noopener noreferrer"
-                    }
-                    className="li-btn li-btn--primary"
-                  >
-                    Live build{" "}
-                    <span className="li-arrow">
-                      {project.projectUrl.startsWith("/") ? "→" : "↗"}
-                    </span>
-                  </a>
-                ) : null}
-                {project.repoUrl ? (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="li-btn"
-                  >
-                    Source <span className="li-arrow">↗</span>
-                  </a>
-                ) : null}
+            {project.projectUrl || project.repoUrl ? (
+              <div className="li-sidecard__section">
+                <span className="li-sidecard__label">Links</span>
+                <div className="li-sidecard__actions">
+                  {project.projectUrl ? (
+                    <a
+                      href={project.projectUrl}
+                      target={project.projectUrl.startsWith("/") ? undefined : "_blank"}
+                      rel={
+                        project.projectUrl.startsWith("/")
+                          ? undefined
+                          : "noopener noreferrer"
+                      }
+                      className="li-btn li-btn--primary"
+                    >
+                      Live build{" "}
+                      <span className="li-arrow">
+                        {project.projectUrl.startsWith("/") ? "→" : "↗"}
+                      </span>
+                    </a>
+                  ) : null}
+                  {project.repoUrl ? (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="li-btn"
+                    >
+                      Source <span className="li-arrow">↗</span>
+                    </a>
+                  ) : null}
+                </div>
               </div>
-            </div>
+            ) : null}
           </aside>
         </div>
 
