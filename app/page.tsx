@@ -21,7 +21,6 @@ export default function Home() {
       <section className="li-hero">
         <div>
           <div className="li-hero__eyebrow">
-            <span className="li-pill li-pill--lime">Portfolio · 2026</span>
             <span className="li-stamp">Open to chat</span>
           </div>
 
@@ -39,7 +38,6 @@ export default function Home() {
             then write
             <br />
             them <em>down.</em>
-            <span className="cursor" />
           </h1>
 
           <p className="li-hero__sub">
@@ -54,14 +52,6 @@ export default function Home() {
             <Link className="li-btn" href="/blog">
               Read writing
             </Link>
-            <a
-              className="li-btn"
-              href="https://github.com/virajxp1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub <em style={{ marginLeft: 4 }}>↗</em>
-            </a>
           </div>
         </div>
 
@@ -93,7 +83,7 @@ export default function Home() {
           <Link
             href="/work"
             className="li-link li-mono"
-            style={{ fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase" }}
+            style={{ fontSize: 13 }}
           >
             See all →
           </Link>
@@ -168,7 +158,7 @@ export default function Home() {
           <Link
             href="/blog"
             className="li-link li-mono"
-            style={{ fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase" }}
+            style={{ fontSize: 13 }}
           >
             All posts →
           </Link>
